@@ -28,9 +28,10 @@ public class ${name}Presenter extends Presenter<${name}Presenter.MyView, ${name}
     }
 
     @Inject
-    public ApplicationPresenter(EventBus eventBus, 
-    							MyView view, 
-    							MyProxy proxy) {
+    public ApplicationPresenter(
+    		EventBus eventBus, 
+    		MyView view, 
+    		MyProxy proxy) {
         super(eventBus, view, proxy, RevealType.Root);
         
         getView().setUiHandlers(this);
