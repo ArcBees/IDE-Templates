@@ -13,7 +13,7 @@ import com.gwtplatform.mvp.client.annotations.ProxyStandard;
 import com.gwtplatform.mvp.client.proxy.Proxy;
 import com.gwtplatform.mvp.client.proxy.RevealContentHandler;
 
-public class ApplicationPresenter extends Presenter<${name}Presenter.MyView, ${name}Presenter.MyProxy> {
+public class ${name}Presenter extends Presenter<${name}Presenter.MyView, ${name}Presenter.MyProxy> {
     public interface MyView extends View {
     }
 
