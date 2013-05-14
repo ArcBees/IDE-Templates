@@ -15,14 +15,14 @@ import com.gwtplatform.mvp.client.ViewWithUiHandlers;
 
 // TODO if then [ViewImpl|ViewWithUiHandlers<${name}UiHandlers>]
 public class ${name}View extends ViewWithUiHandlers<${name}UiHandlers> implements ${name}Presenter.MyView {
-    public interface Binder extends UiBinder<Widget, ${name}View> {
+    interface Binder extends UiBinder<Widget, ${name}View> {
     }
 
     @UiField
     SimplePanel main;
 
     @Inject
-    public ApplicationView(Binder uiBinder) {
+    ApplicationView(Binder uiBinder) {
         initWidget(uiBinder.createAndBindUi(this));
     }
 

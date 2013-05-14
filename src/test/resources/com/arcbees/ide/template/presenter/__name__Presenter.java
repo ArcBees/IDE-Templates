@@ -17,7 +17,7 @@ import com.gwtplatform.mvp.client.HasUiHandlers;
 // TODO optional on uihandlers
 public class ${name}Presenter extends Presenter<${name}Presenter.MyView, ${name}Presenter.MyProxy> 
 	implements ${name}UiHandlers {
-    public interface MyView extends View, HasUiHandlers<${name}UiHandlers> {
+    interface MyView extends View, HasUiHandlers<${name}UiHandlers> {
     }
 
     @ContentSlot
