@@ -12,9 +12,12 @@ import com.gwtplatform.mvp.client.annotations.ContentSlot;
 import com.gwtplatform.mvp.client.annotations.ProxyStandard;
 import com.gwtplatform.mvp.client.proxy.Proxy;
 import com.gwtplatform.mvp.client.proxy.RevealContentHandler;
+import com.gwtplatform.mvp.client.HasUiHandlers;
 
-public class ${name}Presenter extends Presenter<${name}Presenter.MyView, ${name}Presenter.MyProxy> {
-    public interface MyView extends View {
+// TODO optional on uihandlers
+public class ${name}Presenter extends Presenter<${name}Presenter.MyView, ${name}Presenter.MyProxy> 
+	implements ${name}UiHandlers {
+    public interface MyView extends View, HasUiHandlers<${name}UiHandlers> {
     }
 
     @ContentSlot
@@ -29,5 +32,7 @@ public class ${name}Presenter extends Presenter<${name}Presenter.MyView, ${name}
     							MyView view, 
     							MyProxy proxy) {
         super(eventBus, view, proxy, RevealType.Root);
+        
+        getView().setUiHandlers(this);
     }
 }

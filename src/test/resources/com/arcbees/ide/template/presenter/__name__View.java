@@ -11,8 +11,10 @@ import com.google.gwt.user.client.ui.IsWidget;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.gwtplatform.mvp.client.ViewImpl;
+import com.gwtplatform.mvp.client.ViewWithUiHandlers;
 
-public class ${name}View extends ViewImpl implements ${name}Presenter.MyView {
+// TODO if then [ViewImpl|ViewWithUiHandlers<${name}UiHandlers>]
+public class ${name}View extends ViewWithUiHandlers<${name}UiHandlers> implements ${name}Presenter.MyView {
     public interface Binder extends UiBinder<Widget, ${name}View> {
     }
 
