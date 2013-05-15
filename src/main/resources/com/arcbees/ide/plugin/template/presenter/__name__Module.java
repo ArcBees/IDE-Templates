@@ -1,4 +1,4 @@
-package com.arcbees.ide.plugin.template.presenter{package};
+package {package};
 
 import com.gwtplatform.mvp.client.gin.AbstractPresenterModule;
 
