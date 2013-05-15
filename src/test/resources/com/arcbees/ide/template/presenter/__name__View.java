@@ -1,6 +1,3 @@
-#set( $symbol_pound = '#' )
-#set( $symbol_dollar = '$' )
-#set( $symbol_escape = '\' )
 package ${package};
 
 import javax.inject.Inject;
@@ -13,8 +10,13 @@ import com.google.gwt.user.client.ui.Widget;
 import com.gwtplatform.mvp.client.ViewImpl;
 import com.gwtplatform.mvp.client.ViewWithUiHandlers;
 
-// TODO if then [ViewImpl|ViewWithUiHandlers<${name}UiHandlers>]
-public class ${name}View extends ViewWithUiHandlers<${name}UiHandlers> implements ${name}Presenter.MyView {
+#if( $uihandlers )
+	#set( $extends = "ViewWithUiHandlers<${name}UiHandlers>" )
+#else 
+	#set( $extends = "ViewImpl" )
+#end
+
+public class ${name}View extends $extends implements ${name}Presenter.MyView {
     interface Binder extends UiBinder<Widget, ${name}View> {
     }
 
@@ -28,7 +30,7 @@ public class ${name}View extends ViewWithUiHandlers<${name}UiHandlers> implement
 
     @Override
     public void setInSlot(Object slot, IsWidget content) {
-        if (slot == ${name}Presenter.TYPE_SetMainContent) {
+        if (slot == ${name}Presenter.SLOT_${name}) {
             main.setWidget(content);
         } else {
             super.setInSlot(slot, content);
