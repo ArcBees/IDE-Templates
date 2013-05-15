@@ -2,7 +2,6 @@ package com.arcbees.ide.plugin.template.presenter;
 
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.List;
 
 import org.apache.commons.configuration.Configuration;
 import org.apache.commons.configuration.ConfigurationException;
@@ -10,6 +9,7 @@ import org.apache.commons.configuration.PropertiesConfiguration;
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.arcbees.ide.plugin.template.util.FetchProperties;
 import com.jayway.restassured.RestAssured;
 
 public class PresenterRemoteTest {
@@ -19,20 +19,20 @@ public class PresenterRemoteTest {
     @Test
     public void testRemoteGet() {
        String propertiesFile = RestAssured.get(propertiesUrlPath).andReturn().asString();
-       
        System.out.println(propertiesFile);
-       
        Assert.assertTrue(!propertiesFile.isEmpty());
     }
     
     @Test
     public void testRemotePropertiesObject() throws MalformedURLException, ConfigurationException {
+       FetchProperties properties = new FetchProperties(propertiesUrlPath);
+       properties.fetch();
+       Assert.assertTrue(properties.getFiles().size() > 4);
+    }
+    
+    @Test(expected = ConfigurationException.class)
+    public void testRemotePropertiesObjectFail() throws MalformedURLException, ConfigurationException {
        URL url = new URL(propertiesUrlPath);
-       Configuration config = new PropertiesConfiguration(url);
-       List<Object> list = config.getList("file");
-
-       System.out.println(config.toString());
-       
-       Assert.assertTrue(list.size() > 4);
+       Configuration config = new PropertiesConfiguration(url + "fail");
     }
 }
