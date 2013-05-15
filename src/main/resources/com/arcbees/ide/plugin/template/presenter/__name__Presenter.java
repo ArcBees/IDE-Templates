@@ -1,4 +1,4 @@
-package ${package};
+package com.arcbees.ide.plugin.template.presenter{package};
 
 import com.google.gwt.event.shared.GwtEvent.Type;
 import com.google.inject.Inject;
