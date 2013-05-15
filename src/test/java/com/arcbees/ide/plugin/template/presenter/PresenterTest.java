@@ -14,9 +14,8 @@ public class PresenterTest {
 	@Before
 	public void testSetup() {
 		velocityEngine = new VelocityEngine();
-		velocityEngine
-				.setProperty(VelocityEngine.FILE_RESOURCE_LOADER_PATH,
-						"./src/main/resources/com/arcbees/ide/plugin/template/presenter/");
+		velocityEngine.setProperty(VelocityEngine.FILE_RESOURCE_LOADER_PATH,
+				"./src/main/resources/com/arcbees/ide/plugin/template/presenter/");
 		velocityEngine.init();
 	}
 
@@ -52,6 +51,22 @@ public class PresenterTest {
 	}
 
 	@Test
+	public void testPresenterWithUiHandlers() {
+		Template t = velocityEngine.getTemplate("__name__Presenter.java");
+
+		VelocityContext context = new VelocityContext();
+		context.put("package", "com.arcbees.project.client.application");
+		context.put("name", "ApplicationTest");
+		context.put("uihandlers", true);
+
+		StringWriter writer = new StringWriter();
+		t.merge(context, writer);
+
+		// TODO
+		System.out.println(writer.toString());
+	}
+
+	@Test
 	public void testUiHandlers() {
 		Template t = velocityEngine.getTemplate("__name__UiHandlers.java");
 
@@ -74,6 +89,21 @@ public class PresenterTest {
 		VelocityContext context = new VelocityContext();
 		context.put("name", "ApplicationTest");
 		context.put("uihandlers", false);
+
+		StringWriter writer = new StringWriter();
+		t.merge(context, writer);
+
+		// TODO
+		System.out.println(writer.toString());
+	}
+
+	@Test
+	public void testViewWithUiHandlers() {
+		Template t = velocityEngine.getTemplate("__name__View.java");
+
+		VelocityContext context = new VelocityContext();
+		context.put("name", "ApplicationTest");
+		context.put("uihandlers", true);
 
 		StringWriter writer = new StringWriter();
 		t.merge(context, writer);
