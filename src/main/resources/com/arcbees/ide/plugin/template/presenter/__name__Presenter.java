@@ -1,7 +1,4 @@
-#set( $symbol_pound = '#' )
-#set( $symbol_dollar = '$' )
-#set( $symbol_escape = '\' )
-package ${package};
+package {package};
 
 import com.google.gwt.event.shared.GwtEvent.Type;
 import com.google.inject.Inject;
@@ -14,14 +11,20 @@ import com.gwtplatform.mvp.client.proxy.Proxy;
 import com.gwtplatform.mvp.client.proxy.RevealContentHandler;
 import com.gwtplatform.mvp.client.HasUiHandlers;
 
-// TODO optional on uihandlers
-public class ${name}Presenter extends Presenter<${name}Presenter.MyView, ${name}Presenter.MyProxy> 
-	implements ${name}UiHandlers {
-    interface MyView extends View, HasUiHandlers<${name}UiHandlers> {
+#if( $uihandlers )
+	#set( $implements = "implements ${name}UiHandlers" )
+	#set( $extendsView = ", HasUiHandlers<${name}UiHandlers>" )
+#else 
+	#set( $implements = "" )
+	#set( $extendsView = "" )
+#end
+
+public class ${name}Presenter extends Presenter<${name}Presenter.MyView, ${name}Presenter.MyProxy> $implements {
+    interface MyView extends View $extendsView {
     }
 
     @ContentSlot
-    public static final Type<RevealContentHandler<?>> TYPE_SetMainContent = new Type<RevealContentHandler<?>>();
+    public static final Type<RevealContentHandler<?>> SLOT_${name} = new Type<RevealContentHandler<?>>();
 
     @ProxyStandard
     public interface MyProxy extends Proxy<${name}Presenter> {
@@ -34,6 +37,8 @@ public class ${name}Presenter extends Presenter<${name}Presenter.MyView, ${name}
     		MyProxy proxy) {
         super(eventBus, view, proxy, RevealType.Root);
         
+        #if( $uihandlers ) 
         getView().setUiHandlers(this);
+        #end
     }
 }
