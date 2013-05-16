@@ -1,0 +1,8 @@
+#if( $crawler ) 
+    #set( $crawlerEx = "!" )
+#else
+    #set( $crawlerEx = "" )
+#end
+
+public static final String $name = "$crawlerEx$name";
+
