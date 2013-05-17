@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.arcbees.ide.plugin.template.presenter;
+package com.arcbees.plugin.template.presenter;
 
 import java.io.StringWriter;
 
@@ -31,7 +31,7 @@ public class PresenterTest {
     public void testSetup() {
         velocityEngine = new VelocityEngine();
         velocityEngine.setProperty(VelocityEngine.FILE_RESOURCE_LOADER_PATH,
-                "./src/main/resources/com/arcbees/ide/plugin/template/presenter/");
+                "./src/main/resources/com/arcbees/plugin/template/presenter/");
         velocityEngine.init();
     }
 
