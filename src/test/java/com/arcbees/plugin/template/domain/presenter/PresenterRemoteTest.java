@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.arcbees.plugin.template.presenter;
+package com.arcbees.plugin.template.domain.presenter;
 
 import java.net.MalformedURLException;
 import java.net.URL;
