@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.arcbees.plugin.template.presenter;
+package com.arcbees.plugin.template.create.presenter;
 
 import com.arcbees.plugin.template.domain.presenter.PopupPresenterOptions;
 import com.arcbees.plugin.template.domain.presenter.PresenterOptions;

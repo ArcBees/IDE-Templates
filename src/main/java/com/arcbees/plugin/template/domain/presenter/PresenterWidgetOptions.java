@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.arcbees.plugin.template.presenter;
+package com.arcbees.plugin.template.domain.presenter;
 
 public class PresenterWidgetOptions {
 

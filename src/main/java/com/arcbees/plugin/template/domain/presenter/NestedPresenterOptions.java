@@ -25,6 +25,7 @@ public class NestedPresenterOptions {
     
     private boolean isPlace;
     private String nameToken;
+    private boolean crawlable;
     private boolean codeSplit;
     
     public NestedPresenterOptions() {
@@ -84,5 +85,13 @@ public class NestedPresenterOptions {
 
     public void setCodeSplit(boolean codeSplit) {
         this.codeSplit = codeSplit;
+    }
+
+    public boolean getCrawlable() {
+        return crawlable;
+    }
+
+    public void setCrawlable(boolean crawlable) {
+        this.crawlable = crawlable;
     }
 }

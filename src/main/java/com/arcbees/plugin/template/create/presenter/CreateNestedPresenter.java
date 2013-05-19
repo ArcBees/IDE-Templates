@@ -14,14 +14,20 @@
  * the License.
  */
 
-package com.arcbees.plugin.template.presenter;
+package com.arcbees.plugin.template.create.presenter;
 
 import java.io.StringWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
 
+import com.arcbees.plugin.template.create.place.CreatedNameTokens;
+import com.arcbees.plugin.template.create.place.NameToken;
+import com.arcbees.plugin.template.create.place.NameTokenOptions;
+import com.arcbees.plugin.template.domain.place.CreateNameTokens;
 import com.arcbees.plugin.template.domain.presenter.CreatedNestedPresenter;
 import com.arcbees.plugin.template.domain.presenter.NestedPresenterOptions;
 import com.arcbees.plugin.template.domain.presenter.PresenterOptions;
@@ -34,7 +40,7 @@ public class CreateNestedPresenter {
         return createNestedPresenter.getCreatedNestedPresenter();
     }
     
-    private final static String BASE = "./src/main/resources/com/arcbees/plugin/template/presenter/nested";    
+    private final static String BASE = "./src/main/resources/com/arcbees/plugin/template/presenter/nested";
     
     private final PresenterOptions presenterOptions;
     private final NestedPresenterOptions nestedPresenterOptions;
@@ -162,7 +168,18 @@ public class CreateNestedPresenter {
     }
     
     private void processNameTokens() {
-        // TODO
+        NameToken token = new NameToken();
+        token.setCrawlable(nestedPresenterOptions.getCrawlable());
+        token.setToken(nestedPresenterOptions.getNameToken());
+        
+        List<NameToken> nameTokens = new ArrayList<NameToken>();
+        nameTokens.add(token);
+        
+        NameTokenOptions nameTokenOptions = new NameTokenOptions();
+        nameTokenOptions.setNameTokens(nameTokens);
+        
+        CreatedNameTokens createdNameToken = CreateNameTokens.run(nameTokenOptions);
+        createdNestedPresenter.setNameTokens(createdNameToken);
     }
 
     private void processGinModule() {
