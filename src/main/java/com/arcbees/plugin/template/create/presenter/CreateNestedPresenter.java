@@ -40,7 +40,7 @@ public class CreateNestedPresenter {
         return createNestedPresenter.getCreatedNestedPresenter();
     }
     
-    private final static String BASE = "./src/main/resources/com/arcbees/plugin/template/presenter/nested";
+    private final static String BASE_PACKAGE = "./src/main/resources/com/arcbees/plugin/template/presenter/nested";
     
     private final PresenterOptions presenterOptions;
     private final NestedPresenterOptions nestedPresenterOptions;
@@ -66,7 +66,7 @@ public class CreateNestedPresenter {
 
     private void setupVelocity() {
         velocityEngine = new VelocityEngine();
-        velocityEngine.setProperty(VelocityEngine.FILE_RESOURCE_LOADER_PATH, BASE);
+        velocityEngine.setProperty(VelocityEngine.FILE_RESOURCE_LOADER_PATH, BASE_PACKAGE);
         velocityEngine.init();
     }
     
