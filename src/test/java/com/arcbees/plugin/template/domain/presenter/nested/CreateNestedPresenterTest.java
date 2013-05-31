@@ -18,10 +18,10 @@ package com.arcbees.plugin.template.domain.presenter.nested;
 
 import org.junit.Test;
 
+import com.arcbees.plugin.template.create.presenter.CreateNestedPresenter;
 import com.arcbees.plugin.template.domain.presenter.CreatedNestedPresenter;
 import com.arcbees.plugin.template.domain.presenter.NestedPresenterOptions;
 import com.arcbees.plugin.template.domain.presenter.PresenterOptions;
-import com.arcbees.plugin.template.presenter.CreateNestedPresenter;
 
 public class CreateNestedPresenterTest {
     @Test

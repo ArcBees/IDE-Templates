@@ -9,5 +9,5 @@ package {package};
  * <p />
  * Also note the exclamation mark in front of the tokens, this is used for search engine crawling support.
  */
-public class PlaceTokens {
+public class NameTokens {
 }
