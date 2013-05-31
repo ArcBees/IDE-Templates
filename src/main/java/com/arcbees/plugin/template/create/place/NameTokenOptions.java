@@ -14,8 +14,21 @@
  * the License.
  */
 
-package com.arcbees.plugin.template.presenter;
+package com.arcbees.plugin.template.create.place;
 
-public class PresenterWidgetOptions {
+import java.util.List;
 
+public class NameTokenOptions {
+    private List<NameToken> nameTokens;
+    
+    public NameTokenOptions() {
+    }
+
+    public List<NameToken> getNameTokens() {
+        return nameTokens;
+    }
+
+    public void setNameTokens(List<NameToken> nameTokens) {
+        this.nameTokens = nameTokens;
+    }
 }

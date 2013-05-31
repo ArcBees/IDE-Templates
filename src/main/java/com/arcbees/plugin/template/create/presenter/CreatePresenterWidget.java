@@ -14,9 +14,10 @@
  * the License.
  */
 
-package com.arcbees.plugin.template.presenter;
+package com.arcbees.plugin.template.create.presenter;
 
 import com.arcbees.plugin.template.domain.presenter.PresenterOptions;
+import com.arcbees.plugin.template.domain.presenter.PresenterWidgetOptions;
 
 public class CreatePresenterWidget {
     public static void run(PresenterOptions presenterOptions, PresenterWidgetOptions presenterWidgetOptions) {
