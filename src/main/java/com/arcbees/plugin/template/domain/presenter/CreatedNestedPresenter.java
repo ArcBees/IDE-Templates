@@ -69,7 +69,6 @@ public class CreatedNestedPresenter {
         this.viewui = viewui;
     }
     
-
     public CreatedNameTokens getNameTokens() {
         return nameTokens;
     }
