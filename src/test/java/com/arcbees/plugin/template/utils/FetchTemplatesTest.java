@@ -39,7 +39,7 @@ public class FetchTemplatesTest {
         Map<String, FetchTemplate> fetched = fetchTemplates.getPathsToFetch();
         Set<String> paths = fetched.keySet();
         for (String path : paths) {
-            System.out.println("fetched=" + fetched.get(path).getFetched().substring(0, 500));
+            System.out.println("fetched=" + fetched.get(path).getFetched());
             Assert.assertNotNull(fetched.get(path).getFetched());
         }
     }
