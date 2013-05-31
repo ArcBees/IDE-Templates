@@ -25,21 +25,21 @@ import org.junit.Test;
 public class FetchTemplatesTest {
     private String BASE = "https://raw.github.com/ArcBees/IDE-Templates/1.0.0/src/main/resources/com/arcbees/plugin/template/presenter/nested";
     @Test
-    public void testModule() {
+    public void testGettingTemlateFiles() {
         String dir = "target/test";
         FetchTemplates fetchTemplates = new FetchTemplates(dir);
         fetchTemplates.addPath(BASE + "/__name__Module.java.vm");
         fetchTemplates.addPath(BASE + "/__name__Presenter.java.vm");
-        fetchTemplates.addPath(BASE + "__name__UiHandlers.java.vm");
-        fetchTemplates.addPath(BASE + "__name__View.java.vm");
-        fetchTemplates.addPath(BASE + "__name__View.ui.xml.vm");
+        fetchTemplates.addPath(BASE + "/__name__UiHandlers.java.vm");
+        fetchTemplates.addPath(BASE + "/__name__View.java.vm");
+        fetchTemplates.addPath(BASE + "/__name__View.ui.xml.vm");
         
         fetchTemplates.run();
         
         Map<String, FetchTemplate> fetched = fetchTemplates.getPathsToFetch();
         Set<String> paths = fetched.keySet();
         for (String path : paths) {
-            System.out.println("fetched=" + fetched.get(path).getFetched());
+            System.out.println("fetched=" + fetched.get(path).getFetched().substring(0, 500));
             Assert.assertNotNull(fetched.get(path).getFetched());
         }
     }
