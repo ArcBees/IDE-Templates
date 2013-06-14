@@ -14,7 +14,6 @@
  * the License.
  */
 
-
 package com.arcbees.plugin.template.utils;
 
 import java.util.HashMap;
@@ -30,10 +29,8 @@ public class FetchTemplates {
      * value is the fetched value
      */
     private Map<String, FetchTemplate> pathsToFetch;
-    private String dir;
     
-    public FetchTemplates(String dir) {
-        this.dir = dir;
+    public FetchTemplates() {
     }
     
     public void addPath(String path) {
@@ -61,11 +58,8 @@ public class FetchTemplates {
         // Wait until all threads are finish
         while (!executor.isTerminated()) {
         }
-        
-        // TODO
-        System.out.println("Finished all threads");
     }
-    
+
     private void startThreads() {
         Set<String> paths = pathsToFetch.keySet();
         for (String path : paths) {

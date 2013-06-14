@@ -26,8 +26,7 @@ public class FetchTemplatesTest {
     private String BASE = "https://raw.github.com/ArcBees/IDE-Templates/1.0.0/src/main/resources/com/arcbees/plugin/template/presenter/nested";
     @Test
     public void testGettingTemlateFiles() {
-        String dir = "target/test";
-        FetchTemplates fetchTemplates = new FetchTemplates(dir);
+        FetchTemplates fetchTemplates = new FetchTemplates();
         fetchTemplates.addPath(BASE + "/__name__Module.java.vm");
         fetchTemplates.addPath(BASE + "/__name__Presenter.java.vm");
         fetchTemplates.addPath(BASE + "/__name__UiHandlers.java.vm");

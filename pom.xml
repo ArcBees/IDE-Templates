@@ -11,6 +11,7 @@
 		<restassured.version>1.8.0</restassured.version>
 		<junit.version>4.11</junit.version>
 		<commons.version>1.9</commons.version>
+		<commons-io.version>2.4</commons-io.version>
 	</properties>
 
 	<dependencies>
@@ -37,6 +38,11 @@
 			<artifactId>commons-configuration</artifactId>
 			<version>${commons.version}</version>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>${commons-io.version}</version>
 		</dependency>
 	</dependencies>
 </project>
