@@ -33,7 +33,7 @@ public class CreateNestedPresenterTest {
         NestedPresenterOptions nestedPresenterOptions = new NestedPresenterOptions();
         nestedPresenterOptions.setCodeSplit(true);
         
-        CreatedNestedPresenter created = CreateNestedPresenter.run(presenterOptions, nestedPresenterOptions);
+        CreatedNestedPresenter created = CreateNestedPresenter.run(presenterOptions, nestedPresenterOptions, false);
         
         // TODO
         System.out.println(created.getModule().getContents());
