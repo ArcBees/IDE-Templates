@@ -16,6 +16,7 @@
 
 package com.arcbees.plugin.template.domain.presenter.nested;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import com.arcbees.plugin.template.create.presenter.CreateNestedPresenter;
@@ -25,7 +26,7 @@ import com.arcbees.plugin.template.domain.presenter.PresenterOptions;
 
 public class CreateNestedPresenterTest {
     @Test
-    public void testCreation() {
+    public void testPresenterCreationLocal() {
         PresenterOptions presenterOptions = new PresenterOptions();
         presenterOptions.setPackageName("com.arcbees.project.client.app");
         presenterOptions.setName("MyAppHome");
@@ -34,6 +35,31 @@ public class CreateNestedPresenterTest {
         nestedPresenterOptions.setCodeSplit(true);
         
         CreatedNestedPresenter created = CreateNestedPresenter.run(presenterOptions, nestedPresenterOptions, false);
+        
+        // Debugging
+        System.out.println(created.getModule().getContents());
+        System.out.println(created.getPresenter().getContents());
+        System.out.println(created.getUihandlers().getContents());
+        System.out.println(created.getView().getContents());
+        System.out.println(created.getViewui().getContents());
+        
+        Assert.assertNotNull(created.getModule().getContents());
+        Assert.assertNotNull(created.getPresenter().getContents());
+        Assert.assertNotNull(created.getUihandlers().getContents());
+        Assert.assertNotNull(created.getView().getContents());
+        Assert.assertNotNull(created.getViewui().getContents());
+    }
+    
+    @Test
+    public void testPresenterCreationRemote() {
+        PresenterOptions presenterOptions = new PresenterOptions();
+        presenterOptions.setPackageName("com.arcbees.project.client.app");
+        presenterOptions.setName("MyAppHome");
+        
+        NestedPresenterOptions nestedPresenterOptions = new NestedPresenterOptions();
+        nestedPresenterOptions.setCodeSplit(true);
+        
+        CreatedNestedPresenter created = CreateNestedPresenter.run(presenterOptions, nestedPresenterOptions, true);
         
         // TODO
         System.out.println(created.getModule().getContents());

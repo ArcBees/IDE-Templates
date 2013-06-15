@@ -45,7 +45,7 @@ public class CreateNestedPresenter {
         return createNestedPresenter.getCreatedNestedPresenter();
     }
 
-    private static final String BASE_REMOTE = "https://raw.github.com/ArcBees/IDE-Templates/1.0.0/src/main/resources/com/arcbees/plugin/template/presenter/nested";
+    private static final String BASE_REMOTE = "https://raw.github.com/ArcBees/IDE-Templates/1.0.0/src/main/resources/com/arcbees/plugin/template/presenter/nested/";
     private final static String BASE_LOCAL = "./src/main/resources/com/arcbees/plugin/template/presenter/nested";
 
     private final PresenterOptions presenterOptions;
@@ -70,29 +70,23 @@ public class CreateNestedPresenter {
         } else {
             setupVelocityLocal();
         }
-        
+
         process();
     }
 
     private void setupVelocityLocal() {
-        String pathToTemplates = BASE_LOCAL;
         velocityEngine = new VelocityEngine();
-        velocityEngine.setProperty(VelocityEngine.FILE_RESOURCE_LOADER_PATH, pathToTemplates);
+        velocityEngine.setProperty(VelocityEngine.FILE_RESOURCE_LOADER_PATH, BASE_LOCAL);
         velocityEngine.init();
     }
-    
-    private void setupVelocityRemote() { 
-        String pathToTemplates = BASE_REMOTE;
+
+    private void setupVelocityRemote() {
         URLResourceLoader loader = new URLResourceLoader();
         velocityEngine = new VelocityEngine();
-        // TODO
-        velocityEngine.setProperty("resource.loader", pathToTemplates);
+        velocityEngine.setProperty("resource.loader", "url");
         velocityEngine.setProperty("url.resource.loader.instance", loader);
         velocityEngine.setProperty("url.resource.loader.timeout", new Integer(5000));
-        
-        //velocityEngine.setProperty(RuntimeConstants.RUNTIME_LOG_LOGSYSTEM, logger);
-        velocityEngine.setProperty("runtime.log.logsystem.test.level", "debug");
-        
+        velocityEngine.setProperty("url.resource.loader.root", BASE_REMOTE);
         velocityEngine.init();
     }
 
@@ -131,53 +125,61 @@ public class CreateNestedPresenter {
         processView();
         processViewBinder();
 
-        processNameTokens();
-        processGinModule(); // TODO ?
-        processParentContentSlot(); // TODO ?
-        // TODO ?
+        // TODO
+        // processNameTokens();
+        // processGinModule(); // TODO ?
+        // processParentContentSlot(); // TODO ?
+        // // TODO ?
     }
 
     private void processModule() {
         String fileName = "__name__Module.java.vm";
-        processFile(fileName);
+        RenderedTemplate rendered = processFile(fileName);
+        createdNestedPresenter.setModule(rendered);
     }
 
     private void processPresenter() {
         String fileName = "__name__Presenter.java.vm";
-        processFile(fileName);
+        RenderedTemplate rendered = processFile(fileName);
+        createdNestedPresenter.setPresenter(rendered);
     }
 
     private void processUiHandlers() {
         String fileName = "__name__UiHandlers.java.vm";
-        processFile(fileName);
+        RenderedTemplate rendered = processFile(fileName);
+        createdNestedPresenter.setUihandlers(rendered);
     }
 
     private void processView() {
         String fileName = "__name__View.java.vm";
-        processFile(fileName);
+        RenderedTemplate rendered = processFile(fileName);
+        createdNestedPresenter.setView(rendered);
     }
 
     private void processViewBinder() {
         String fileName = "__name__View.ui.xml.vm";
-        processFile(fileName);
+        RenderedTemplate rendered = processFile(fileName);
+        createdNestedPresenter.setViewui(rendered);
     }
 
-    private void processFile(String fileName) {
+    // TODO
+    private RenderedTemplate processFile(String fileName) {
         Template template = velocityEngine.getTemplate(fileName);
         VelocityContext context = getBaseVelocityContext();
         StringWriter writer = new StringWriter();
         template.merge(context, writer);
         RenderedTemplate rendered = new RenderedTemplate(renderFileName(fileName), writer.toString());
-        createdNestedPresenter.setModule(rendered);
         createFile(rendered);
+        return rendered;
     }
 
     private void createFile(RenderedTemplate rendered) {
         String fileName = rendered.getName();
-        
+
         System.out.println("fileName=" + fileName + " " + rendered.getContents());
     }
 
+    // TODO do like this
     private void processNameTokens() {
         NameToken token = new NameToken();
         token.setCrawlable(nestedPresenterOptions.getCrawlable());
