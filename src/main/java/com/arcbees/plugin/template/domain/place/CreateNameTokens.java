@@ -22,6 +22,7 @@ import java.util.List;
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
+import org.apache.velocity.runtime.resource.loader.URLResourceLoader;
 
 import com.arcbees.plugin.template.create.place.CreatedNameTokens;
 import com.arcbees.plugin.template.create.place.NameToken;
@@ -29,20 +30,23 @@ import com.arcbees.plugin.template.create.place.NameTokenOptions;
 import com.arcbees.plugin.template.domain.presenter.RenderedTemplate;
 
 public class CreateNameTokens {
-    public static CreatedNameTokens run(NameTokenOptions nameTokenOptions) {
-        CreateNameTokens created = new CreateNameTokens(nameTokenOptions);
+    public static CreatedNameTokens run(NameTokenOptions nameTokenOptions, boolean remote) {
+        CreateNameTokens created = new CreateNameTokens(nameTokenOptions, remote);
         created.run();
         return created.getCreatedNameTokens();
     }
 
-    private final static String BASE = "./src/main/resources/com/arcbees/plugin/template/place/";
+    private final static String BASE_LOCAL = "./src/main/resources/com/arcbees/plugin/template/place/";
+    private static final String BASE_REMOTE = "https://raw.github.com/ArcBees/IDE-Templates/1.0.0/src/main/resources/com/arcbees/plugin/template/place/";
     
     private VelocityEngine velocityEngine;
     private NameTokenOptions nameTokenOptions;
     private CreatedNameTokens createdNameTokens;
+    private boolean remote;
      
-    private CreateNameTokens(NameTokenOptions nameTokenOptions) {
+    private CreateNameTokens(NameTokenOptions nameTokenOptions, boolean remote) {
         this.nameTokenOptions = nameTokenOptions;
+        this.remote = remote;
     }
     
     private CreatedNameTokens getCreatedNameTokens() {
@@ -52,33 +56,46 @@ public class CreateNameTokens {
     private void run() {
         createdNameTokens = new CreatedNameTokens();
         
-        setupVelocity();
+        if (remote) {
+            setupVelocityRemote();
+        } else {
+            setupVelocityLocal();
+        }
+
         processNameTokensFile();
         processNameTokens();
     }
 
-    private void setupVelocity() {
+    private void setupVelocityLocal() {
         velocityEngine = new VelocityEngine();
-        velocityEngine.setProperty(VelocityEngine.FILE_RESOURCE_LOADER_PATH, BASE);
+        velocityEngine.setProperty(VelocityEngine.FILE_RESOURCE_LOADER_PATH, BASE_LOCAL);
+        velocityEngine.init();
+    }
+
+    private void setupVelocityRemote() {
+        URLResourceLoader loader = new URLResourceLoader();
+        velocityEngine = new VelocityEngine();
+        velocityEngine.setProperty("resource.loader", "url");
+        velocityEngine.setProperty("url.resource.loader.instance", loader);
+        velocityEngine.setProperty("url.resource.loader.timeout", new Integer(5000));
+        velocityEngine.setProperty("url.resource.loader.root", BASE_REMOTE);
         velocityEngine.init();
     }
     
     private VelocityContext getBaseVelocityContext() {
         VelocityContext context = new VelocityContext();
-        
         return context;
     }
     
     private void processNameTokensFile() {
         String fileName = "NameTokens.java.vm";
         Template template = velocityEngine.getTemplate(fileName);
-
         VelocityContext context = getBaseVelocityContext();
-
         StringWriter writer = new StringWriter();
         template.merge(context, writer);
-        
-        createdNameTokens.setNameTokens(new RenderedTemplate(renderFileName(fileName), writer.toString()));
+        RenderedTemplate rendered = new RenderedTemplate(renderFileName(fileName), writer.toString());
+        createdNameTokens.setNameTokens(rendered);
+        createFile(rendered);
     }
     
     private void processNameTokens() {
@@ -90,6 +107,10 @@ public class CreateNameTokens {
         for (NameToken token : tokens) {
             processNameToken(token);
         }
+        
+        // TODO inject field and method into nametoken class
+        System.out.println("field=" + createdNameTokens.getFields());
+        System.out.println("methods=" + createdNameTokens.getMethods());
     }
     
     private void processNameToken(NameToken token) {
@@ -101,31 +122,33 @@ public class CreateNameTokens {
     }
 
     private String processNameTokenFieldTemplate(NameToken token) {
-        String fileName = "NameTokenField.java.vm";
-        Template template = velocityEngine.getTemplate(fileName);
-
-        VelocityContext context = getBaseVelocityContext();
-        context.put("crawlable", token.getCrawlable());
-        context.put("name", token.getToken());
-
-        StringWriter writer = new StringWriter();
-        template.merge(context, writer);
-        
-        return writer.toString();
+        String fileName = "NameTokenField.vm";
+        RenderedTemplate rendered = processTemplate(fileName, token);
+        return rendered.getContents();
     }
     
     private String processNameTokenMethodTemplate(NameToken token) {
-        String fileName = "NameTokenMethod.java.vm";
+        String fileName = "NameTokenMethod.vm";
+        RenderedTemplate rendered = processTemplate(fileName, token);
+        return rendered.getContents();
+    }
+    
+    private RenderedTemplate processTemplate(String fileName, NameToken token) {
         Template template = velocityEngine.getTemplate(fileName);
-
         VelocityContext context = getBaseVelocityContext();
         context.put("crawlable", token.getCrawlable());
         context.put("name", token.getToken());
-
+        
         StringWriter writer = new StringWriter();
         template.merge(context, writer);
-        
-        return writer.toString();
+        RenderedTemplate rendered = new RenderedTemplate(renderFileName(fileName), writer.toString());
+        return rendered;
+    }
+    
+    private void createFile(RenderedTemplate rendered) {
+        String fileName = rendered.getName();
+
+        System.out.println("fileName=" + fileName + " " + rendered.getContents());
     }
     
     private String renderFileName(String fileName) {
