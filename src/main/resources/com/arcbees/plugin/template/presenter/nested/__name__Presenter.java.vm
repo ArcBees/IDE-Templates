@@ -45,7 +45,7 @@ public class ${name}Presenter extends Presenter<${name}Presenter.MyView, ${name}
     }
 
     @Inject
-    public ApplicationPresenter(
+    public ${name}Presenter(
     		EventBus eventBus, 
     		MyView view, 
     		MyProxy proxy) {
