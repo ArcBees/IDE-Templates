@@ -122,11 +122,7 @@ public class CreateNestedPresenter {
         processUiHandlers();
         processView();
         processViewBinder();
-
-        processNameTokens(); // TODO ?
-        processGinModule(); // TODO ?
-        processParentContentSlot(); // TODO ?
-        // TODO
+        processNameTokens();
     }
 
     private void processModule() {
@@ -165,15 +161,7 @@ public class CreateNestedPresenter {
         StringWriter writer = new StringWriter();
         template.merge(context, writer);
         RenderedTemplate rendered = new RenderedTemplate(renderFileName(fileName), writer.toString());
-        createFile(rendered);
         return rendered;
-    }
-
-    private void createFile(RenderedTemplate rendered) {
-        String fileName = rendered.getName();
-
-        // TODO
-        System.out.println("fileName=" + fileName + " " + rendered.getContents());
     }
 
     private void processNameTokens() {
@@ -189,14 +177,6 @@ public class CreateNestedPresenter {
 
         CreatedNameTokens createdNameToken = CreateNameTokens.run(nameTokenOptions, remote);
         createdNestedPresenter.setNameTokens(createdNameToken);
-    }
-
-    private void processGinModule() {
-        // TODO
-    }
-
-    private void processParentContentSlot() {
-        // TODO
     }
 
     private String renderFileName(String fileName) {

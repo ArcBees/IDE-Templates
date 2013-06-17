@@ -95,7 +95,6 @@ public class CreateNameTokens {
         template.merge(context, writer);
         RenderedTemplate rendered = new RenderedTemplate(renderFileName(fileName), writer.toString());
         createdNameTokens.setNameTokens(rendered);
-        createFile(rendered);
     }
     
     private void processNameTokens() {
@@ -107,10 +106,6 @@ public class CreateNameTokens {
         for (NameToken token : tokens) {
             processNameToken(token);
         }
-        
-        // TODO inject field and method into nametoken class
-        System.out.println("field=" + createdNameTokens.getFields());
-        System.out.println("methods=" + createdNameTokens.getMethods());
     }
     
     private void processNameToken(NameToken token) {
@@ -143,12 +138,6 @@ public class CreateNameTokens {
         template.merge(context, writer);
         RenderedTemplate rendered = new RenderedTemplate(renderFileName(fileName), writer.toString());
         return rendered;
-    }
-    
-    private void createFile(RenderedTemplate rendered) {
-        String fileName = rendered.getName();
-
-        System.out.println("fileName=" + fileName + " " + rendered.getContents());
     }
     
     private String renderFileName(String fileName) {
