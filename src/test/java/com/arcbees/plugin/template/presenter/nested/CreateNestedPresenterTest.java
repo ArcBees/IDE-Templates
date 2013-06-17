@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.arcbees.plugin.template.domain.presenter.nested;
+package com.arcbees.plugin.template.presenter.nested;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -61,11 +61,17 @@ public class CreateNestedPresenterTest {
         
         CreatedNestedPresenter created = CreateNestedPresenter.run(presenterOptions, nestedPresenterOptions, true);
         
-        // TODO
+        // Debugging
         System.out.println(created.getModule().getContents());
         System.out.println(created.getPresenter().getContents());
         System.out.println(created.getUihandlers().getContents());
         System.out.println(created.getView().getContents());
         System.out.println(created.getViewui().getContents());
+        
+        Assert.assertNotNull(created.getModule().getContents());
+        Assert.assertNotNull(created.getPresenter().getContents());
+        Assert.assertNotNull(created.getUihandlers().getContents());
+        Assert.assertNotNull(created.getView().getContents());
+        Assert.assertNotNull(created.getViewui().getContents());
     }
 }

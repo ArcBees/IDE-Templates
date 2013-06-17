@@ -24,7 +24,7 @@ public class ${name}View extends $extends implements ${name}Presenter.MyView {
     SimplePanel main;
 
     @Inject
-    ApplicationView(Binder uiBinder) {
+    ${name}View(Binder uiBinder) {
         initWidget(uiBinder.createAndBindUi(this));
     }
 
