@@ -18,13 +18,13 @@ package com.arcbees.plugin.template.domain.presenter;
 
 public class RenderedTemplate {
     private String contents;
-    private String fileName;
+    private String name;
 
     public RenderedTemplate() {
     }
 
     public RenderedTemplate(String fileName, String contents) {
-        this.fileName = fileName;
+        this.name = fileName;
         this.contents = contents;
     }
 
@@ -37,10 +37,14 @@ public class RenderedTemplate {
     }
 
     public String getName() {
-        return fileName;
+        return name;
     }
 
-    public void setName(String name) {
-        this.fileName = name;
+    public void setName(String fileName) {
+        this.name = fileName;
+    }
+    
+    public String getNameAndNoExt() {
+        return name.replace(".vm", "");
     }
 }

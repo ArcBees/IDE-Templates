@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.arcbees.plugin.template.domain.presenter;
+package com.arcbees.plugin.template.presenter;
 
 import java.io.StringWriter;
 

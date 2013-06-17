@@ -42,4 +42,9 @@ public class FetchTemplate implements Runnable {
     public boolean hasErrors() {
         return false;
     }
+    
+    public String getFileName() {
+        String fileName = url.replaceAll(".*/", "");
+        return fileName;
+    }
 }
