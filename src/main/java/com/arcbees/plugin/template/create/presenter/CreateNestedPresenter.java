@@ -19,12 +19,10 @@ package com.arcbees.plugin.template.create.presenter;
 import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Logger;
 
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
-import org.apache.velocity.runtime.RuntimeConstants;
 import org.apache.velocity.runtime.resource.loader.URLResourceLoader;
 
 import com.arcbees.plugin.template.create.place.CreatedNameTokens;
@@ -46,7 +44,7 @@ public class CreateNestedPresenter {
     }
 
     private static final String BASE_REMOTE = "https://raw.github.com/ArcBees/IDE-Templates/1.0.0/src/main/resources/com/arcbees/plugin/template/presenter/nested/";
-    private final static String BASE_LOCAL = "./src/main/resources/com/arcbees/plugin/template/presenter/nested";
+    private final static String BASE_LOCAL = "./src/main/resources/com/arcbees/plugin/template/presenter/nested/";
 
     private final PresenterOptions presenterOptions;
     private final NestedPresenterOptions nestedPresenterOptions;
@@ -124,62 +122,48 @@ public class CreateNestedPresenter {
         processUiHandlers();
         processView();
         processViewBinder();
-
-        // TODO
-        // processNameTokens();
-        // processGinModule(); // TODO ?
-        // processParentContentSlot(); // TODO ?
-        // // TODO ?
+        processNameTokens();
     }
 
     private void processModule() {
         String fileName = "__name__Module.java.vm";
-        RenderedTemplate rendered = processFile(fileName);
+        RenderedTemplate rendered = processTemplate(fileName);
         createdNestedPresenter.setModule(rendered);
     }
 
     private void processPresenter() {
         String fileName = "__name__Presenter.java.vm";
-        RenderedTemplate rendered = processFile(fileName);
+        RenderedTemplate rendered = processTemplate(fileName);
         createdNestedPresenter.setPresenter(rendered);
     }
 
     private void processUiHandlers() {
         String fileName = "__name__UiHandlers.java.vm";
-        RenderedTemplate rendered = processFile(fileName);
+        RenderedTemplate rendered = processTemplate(fileName);
         createdNestedPresenter.setUihandlers(rendered);
     }
 
     private void processView() {
         String fileName = "__name__View.java.vm";
-        RenderedTemplate rendered = processFile(fileName);
+        RenderedTemplate rendered = processTemplate(fileName);
         createdNestedPresenter.setView(rendered);
     }
 
     private void processViewBinder() {
         String fileName = "__name__View.ui.xml.vm";
-        RenderedTemplate rendered = processFile(fileName);
+        RenderedTemplate rendered = processTemplate(fileName);
         createdNestedPresenter.setViewui(rendered);
     }
 
-    // TODO
-    private RenderedTemplate processFile(String fileName) {
+    private RenderedTemplate processTemplate(String fileName) {
         Template template = velocityEngine.getTemplate(fileName);
         VelocityContext context = getBaseVelocityContext();
         StringWriter writer = new StringWriter();
         template.merge(context, writer);
         RenderedTemplate rendered = new RenderedTemplate(renderFileName(fileName), writer.toString());
-        createFile(rendered);
         return rendered;
     }
 
-    private void createFile(RenderedTemplate rendered) {
-        String fileName = rendered.getName();
-
-        System.out.println("fileName=" + fileName + " " + rendered.getContents());
-    }
-
-    // TODO do like this
     private void processNameTokens() {
         NameToken token = new NameToken();
         token.setCrawlable(nestedPresenterOptions.getCrawlable());
@@ -191,16 +175,8 @@ public class CreateNestedPresenter {
         NameTokenOptions nameTokenOptions = new NameTokenOptions();
         nameTokenOptions.setNameTokens(nameTokens);
 
-        CreatedNameTokens createdNameToken = CreateNameTokens.run(nameTokenOptions);
+        CreatedNameTokens createdNameToken = CreateNameTokens.run(nameTokenOptions, remote);
         createdNestedPresenter.setNameTokens(createdNameToken);
-    }
-
-    private void processGinModule() {
-        // TODO
-    }
-
-    private void processParentContentSlot() {
-        // TODO
     }
 
     private String renderFileName(String fileName) {
