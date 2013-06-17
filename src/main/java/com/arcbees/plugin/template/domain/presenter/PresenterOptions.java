@@ -17,6 +17,7 @@
 package com.arcbees.plugin.template.domain.presenter;
 
 public class PresenterOptions {
+    private String tmpPath;
     private String name;
     private String packageName;
     
@@ -120,5 +121,13 @@ public class PresenterOptions {
 
     public void setPrepareFromRequest(boolean prepareFromRequest) {
         this.prepareFromRequest = prepareFromRequest;
+    }
+
+    public String getTmpPath() {
+        return tmpPath;
+    }
+
+    public void setTmpPath(String tmpPath) {
+        this.tmpPath = tmpPath;
     }
 }
