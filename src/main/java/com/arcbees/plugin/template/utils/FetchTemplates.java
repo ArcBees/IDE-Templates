@@ -24,10 +24,6 @@ import java.util.concurrent.Executors;
 
 public class FetchTemplates {
     private ExecutorService executor;
-    /**
-     * key is the path
-     * value is the fetched value
-     */
     private Map<String, FetchTemplate> pathsToFetch;
     
     public FetchTemplates() {
