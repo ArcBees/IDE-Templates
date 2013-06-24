@@ -48,7 +48,7 @@ public class RenderedTemplate {
         return name.replace(".vm", "");
     }
     
-    public String getFileName() {
+    public String getNameAndNoExts() {
         return name.replace(".vm", "").replaceAll("\\..*", "");
     }
 }
