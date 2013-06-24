@@ -1,3 +1,11 @@
+#if ( $revealType == "Root")
+	#set( $revealType = "RevealType.Root" )
+#elseif( $revealType == "RootLayout" )
+	#set( $revealType = "RevealType.RootLayout" )
+#elseif ( $revealType == "RootPopup" )
+	#set( $revealType = "RevealType.RootPopup" )
+#end
+
 #if ( $uihandlers )
 	#set( $implements = "implements ${name}UiHandlers" )
 	#set( $extendsView = ", HasUiHandlers<${name}UiHandlers>" )
