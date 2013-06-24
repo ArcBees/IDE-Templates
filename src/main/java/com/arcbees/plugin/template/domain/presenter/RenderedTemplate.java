@@ -23,8 +23,8 @@ public class RenderedTemplate {
     public RenderedTemplate() {
     }
 
-    public RenderedTemplate(String fileName, String contents) {
-        this.name = fileName;
+    public RenderedTemplate(String name, String contents) {
+        this.name = name;
         this.contents = contents;
     }
 
@@ -46,5 +46,9 @@ public class RenderedTemplate {
     
     public String getNameAndNoExt() {
         return name.replace(".vm", "");
+    }
+    
+    public String getFileName() {
+        return name.replace(".vm", "").replaceAll("\\..*", "");
     }
 }
