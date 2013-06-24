@@ -1,4 +1,4 @@
-#if( $uihandlers )
+#if ( $uihandlers )
 	#set( $implements = "implements ${name}UiHandlers" )
 	#set( $extendsView = ", HasUiHandlers<${name}UiHandlers>" )
 #else
@@ -49,7 +49,7 @@ public class ${name}Presenter extends Presenter<${name}Presenter.MyView, ${name}
     		EventBus eventBus, 
     		MyView view, 
     		MyProxy proxy) {
-        super(eventBus, view, proxy, RevealType.Root);
+        super(eventBus, view, proxy, ${revealType});
         
         #if( $uihandlers ) 
         getView().setUiHandlers(this);
@@ -98,6 +98,5 @@ public class ${name}Presenter extends Presenter<${name}Presenter.MyView, ${name}
 	public void prepareFromRequest(PlaceRequest request) {
 		super.prepareFromRequest(request);
 	}
-	#end
-	
+	#end	
 }
