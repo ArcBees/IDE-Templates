@@ -21,7 +21,9 @@ public class NestedPresenterOptions {
     private boolean revealContentRootEvent;
     private boolean revealRootLayoutContentEvent;
     
+    private String revealType;
     private String contentSlot;
+    private String contentSlotImport;
     
     private boolean isPlace;
     private String nameToken;
@@ -93,5 +95,21 @@ public class NestedPresenterOptions {
 
     public void setCrawlable(boolean crawlable) {
         this.crawlable = crawlable;
+    }
+    
+    public String getRevealType() {
+        return revealType;
+    }
+
+    public void setRevealType(String revealType) {
+        this.revealType = revealType;
+    }
+
+    public String getContentSlotImport() {
+        return contentSlotImport;
+    }
+
+    public void setContentSlotImport(String contentSlotImport) {
+        this.contentSlotImport = contentSlotImport;
     }
 }
