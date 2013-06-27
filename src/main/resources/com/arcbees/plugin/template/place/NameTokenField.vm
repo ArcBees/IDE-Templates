@@ -4,4 +4,4 @@
     #set( $crawlerEx = "" )
 #end
 
-public static final String $name = "$crawlerEx$name";
+public static final String $name = "${crawlerEx}${name}";

@@ -39,6 +39,7 @@ import com.gwtplatform.mvp.client.proxy.Proxy;
 import com.gwtplatform.mvp.client.proxy.RevealContentHandler;
 import com.gwtplatform.mvp.client.HasUiHandlers;
 import com.gwtplatform.mvp.client.proxy.PlaceRequest;
+${contentSlotImport}
 
 public class ${name}Presenter extends Presenter<${name}Presenter.MyView, ${name}Presenter.MyProxy> $implements {
     interface MyView extends View $extendsView {
