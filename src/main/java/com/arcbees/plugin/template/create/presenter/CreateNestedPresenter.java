@@ -109,9 +109,11 @@ public class CreateNestedPresenter {
         context.put("preparefromrequest", presenterOptions.getPrepareFromRequest());
 
         // nested presenter options
+        context.put("revealType", nestedPresenterOptions.getRevealType());
         context.put("codesplit", nestedPresenterOptions.getCodeSplit());
         context.put("isplace", nestedPresenterOptions.getIsPlace());
         context.put("nametoken", nestedPresenterOptions.getNameToken());
+        context.put("contentSlotImport", nestedPresenterOptions.getContentSlotImport());
 
         return context;
     }
