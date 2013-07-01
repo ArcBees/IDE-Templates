@@ -25,10 +25,10 @@ import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
 import org.apache.velocity.runtime.resource.loader.URLResourceLoader;
 
-import com.arcbees.plugin.template.create.place.CreatedNameTokens;
-import com.arcbees.plugin.template.create.place.NameToken;
-import com.arcbees.plugin.template.create.place.NameTokenOptions;
-import com.arcbees.plugin.template.domain.place.CreateNameTokens;
+import com.arcbees.plugin.template.create.place.CreateNameTokens;
+import com.arcbees.plugin.template.domain.place.CreatedNameTokens;
+import com.arcbees.plugin.template.domain.place.NameToken;
+import com.arcbees.plugin.template.domain.place.NameTokenOptions;
 import com.arcbees.plugin.template.domain.presenter.CreatedNestedPresenter;
 import com.arcbees.plugin.template.domain.presenter.NestedPresenterOptions;
 import com.arcbees.plugin.template.domain.presenter.PresenterOptions;
@@ -175,6 +175,7 @@ public class CreateNestedPresenter {
         nameTokens.add(token);
 
         NameTokenOptions nameTokenOptions = new NameTokenOptions();
+        nameTokenOptions.setPackageName(nestedPresenterOptions.getNameTokensPackageName());
         nameTokenOptions.setNameTokens(nameTokens);
 
         CreatedNameTokens createdNameToken = CreateNameTokens.run(nameTokenOptions, remote);

@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.arcbees.plugin.template.domain.place;
+package com.arcbees.plugin.template.create.place;
 
 import java.io.StringWriter;
 import java.util.List;
@@ -24,9 +24,9 @@ import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
 import org.apache.velocity.runtime.resource.loader.URLResourceLoader;
 
-import com.arcbees.plugin.template.create.place.CreatedNameTokens;
-import com.arcbees.plugin.template.create.place.NameToken;
-import com.arcbees.plugin.template.create.place.NameTokenOptions;
+import com.arcbees.plugin.template.domain.place.CreatedNameTokens;
+import com.arcbees.plugin.template.domain.place.NameToken;
+import com.arcbees.plugin.template.domain.place.NameTokenOptions;
 import com.arcbees.plugin.template.domain.presenter.RenderedTemplate;
 
 public class CreateNameTokens {
@@ -36,8 +36,8 @@ public class CreateNameTokens {
         return created.getCreatedNameTokens();
     }
 
-    private final static String BASE_LOCAL = "./src/main/resources/com/arcbees/plugin/template/place/";
     private static final String BASE_REMOTE = "https://raw.github.com/ArcBees/IDE-Templates/1.0.0/src/main/resources/com/arcbees/plugin/template/place/";
+    private final static String BASE_LOCAL = "./src/main/resources/com/arcbees/plugin/template/place/";    
     
     private VelocityEngine velocityEngine;
     private NameTokenOptions nameTokenOptions;
@@ -84,6 +84,7 @@ public class CreateNameTokens {
     
     private VelocityContext getBaseVelocityContext() {
         VelocityContext context = new VelocityContext();
+        context.put("package", nameTokenOptions.getPackageName());
         return context;
     }
     
