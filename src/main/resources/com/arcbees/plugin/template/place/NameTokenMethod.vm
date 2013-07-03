@@ -1,5 +1,3 @@
-#set( $methodName = $name.substring(0,1).toUpperCase() )
-
-public static String get$methodName() {
-    return $name;
+public static String get${methodName}() {
+    return ${name};
 }
