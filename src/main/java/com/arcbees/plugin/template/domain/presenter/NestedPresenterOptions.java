@@ -121,4 +121,16 @@ public class NestedPresenterOptions {
     public String getNameTokensPackageName() {
         return nameTokensPackageName;
     }
+
+    // TODO
+    public String getNameTokenCall() {
+        // TODO
+        return "CLASSTODO." + nameToken;
+    }
+
+    // TODO
+    public String getNameTokenImport() {
+        // TODO 
+        return "import TODO";
+    }
 }

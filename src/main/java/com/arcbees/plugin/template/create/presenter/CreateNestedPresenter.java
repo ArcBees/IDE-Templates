@@ -112,8 +112,9 @@ public class CreateNestedPresenter {
         context.put("revealType", nestedPresenterOptions.getRevealType());
         context.put("codesplit", nestedPresenterOptions.getCodeSplit());
         context.put("isplace", nestedPresenterOptions.getIsPlace());
-        context.put("nametoken", nestedPresenterOptions.getNameToken());
+        context.put("nametoken", nestedPresenterOptions.getNameTokenCall());
         context.put("contentSlotImport", nestedPresenterOptions.getContentSlotImport());
+        context.put("nameTokenImport", nestedPresenterOptions.getNameTokenImport());
 
         return context;
     }

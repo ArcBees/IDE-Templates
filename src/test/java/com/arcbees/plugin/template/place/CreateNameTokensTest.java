@@ -22,10 +22,10 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.arcbees.plugin.template.create.place.CreatedNameTokens;
-import com.arcbees.plugin.template.create.place.NameToken;
-import com.arcbees.plugin.template.create.place.NameTokenOptions;
-import com.arcbees.plugin.template.domain.place.CreateNameTokens;
+import com.arcbees.plugin.template.create.place.CreateNameTokens;
+import com.arcbees.plugin.template.domain.place.CreatedNameTokens;
+import com.arcbees.plugin.template.domain.place.NameToken;
+import com.arcbees.plugin.template.domain.place.NameTokenOptions;
 
 public class CreateNameTokensTest {
     @Test
