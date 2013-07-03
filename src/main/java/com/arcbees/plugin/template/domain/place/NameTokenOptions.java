@@ -14,14 +14,23 @@
  * the License.
  */
 
-package com.arcbees.plugin.template.create.place;
+package com.arcbees.plugin.template.domain.place;
 
 import java.util.List;
 
 public class NameTokenOptions {
+    private String packageName;
     private List<NameToken> nameTokens;
     
     public NameTokenOptions() {
+    }
+    
+    public String getPackageName() {
+        return packageName;
+    }
+
+    public void setPackageName(String packageName) {
+        this.packageName = packageName;
     }
 
     public List<NameToken> getNameTokens() {

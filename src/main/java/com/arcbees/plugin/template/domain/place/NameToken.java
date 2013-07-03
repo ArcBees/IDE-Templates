@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.arcbees.plugin.template.create.place;
+package com.arcbees.plugin.template.domain.place;
 
 public class NameToken {
     private boolean crawlable;
