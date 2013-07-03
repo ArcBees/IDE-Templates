@@ -16,7 +16,7 @@
 
 package com.arcbees.plugin.template.domain.presenter;
 
-import com.arcbees.plugin.template.create.place.CreatedNameTokens;
+import com.arcbees.plugin.template.domain.place.CreatedNameTokens;
 
 public class CreatedNestedPresenter {
     private RenderedTemplate module;

@@ -29,6 +29,7 @@ public class NestedPresenterOptions {
     private String nameToken;
     private boolean crawlable;
     private boolean codeSplit;
+    private String nameTokensPackageName;
     
     public NestedPresenterOptions() {
     }
@@ -111,5 +112,25 @@ public class NestedPresenterOptions {
 
     public void setContentSlotImport(String contentSlotImport) {
         this.contentSlotImport = contentSlotImport;
+    }
+
+    public void setNameTokensPackageName(String nameTokensPackageName) {
+        this.nameTokensPackageName = nameTokensPackageName;
+    }
+    
+    public String getNameTokensPackageName() {
+        return nameTokensPackageName;
+    }
+
+    // TODO
+    public String getNameTokenCall() {
+        // TODO
+        return "CLASSTODO." + nameToken;
+    }
+
+    // TODO
+    public String getNameTokenImport() {
+        // TODO 
+        return "import TODO";
     }
 }
