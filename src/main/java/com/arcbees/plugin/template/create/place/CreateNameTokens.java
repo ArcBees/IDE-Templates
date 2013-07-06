@@ -30,9 +30,9 @@ import com.arcbees.plugin.template.domain.place.NameTokenOptions;
 import com.arcbees.plugin.template.domain.presenter.RenderedTemplate;
 
 public class CreateNameTokens {
-    public static CreatedNameTokens run(NameTokenOptions nameTokenOptions, boolean remote) {
+    public static CreatedNameTokens run(NameTokenOptions nameTokenOptions, boolean remote, boolean processFileOnly) {
         CreateNameTokens created = new CreateNameTokens(nameTokenOptions, remote);
-        created.run();
+        created.run(processFileOnly);
         return created.getCreatedNameTokens();
     }
 
@@ -53,7 +53,7 @@ public class CreateNameTokens {
         return createdNameTokens;
     }
     
-    private void run() {
+    private void run(boolean processFileOnly) {
         createdNameTokens = new CreatedNameTokens();
         
         if (remote) {
@@ -62,8 +62,12 @@ public class CreateNameTokens {
             setupVelocityLocal();
         }
 
-        processNameTokensFile();
-        processNameTokens();
+        if (processFileOnly) {
+            processNameTokensFile();
+        } else {
+            processNameTokensFile();
+            processNameTokens();    
+        }
     }
 
     private void setupVelocityLocal() {
@@ -85,6 +89,7 @@ public class CreateNameTokens {
     private VelocityContext getBaseVelocityContext() {
         VelocityContext context = new VelocityContext();
         context.put("package", nameTokenOptions.getPackageName());
+        context.put("methodName", nameTokenOptions.getMethodName(0));
         return context;
     }
     
@@ -95,7 +100,7 @@ public class CreateNameTokens {
         StringWriter writer = new StringWriter();
         template.merge(context, writer);
         RenderedTemplate rendered = new RenderedTemplate(renderFileName(fileName), writer.toString());
-        createdNameTokens.setNameTokens(rendered);
+        createdNameTokens.setNameTokensFile(rendered);
     }
     
     private void processNameTokens() {
