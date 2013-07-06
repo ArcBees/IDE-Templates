@@ -21,8 +21,7 @@
 #end
 
 #if ( $isplace ) 
-    #set( $quote = '"' )
-	#set( $nametokenrendered = "@NameToken(${quote}${nametoken}${quote})" )
+	#set( $nametokenrendered = "@NameToken(${nametoken})" )
 #else 
 	#set( $nametokenrendered = "" )
 #end
