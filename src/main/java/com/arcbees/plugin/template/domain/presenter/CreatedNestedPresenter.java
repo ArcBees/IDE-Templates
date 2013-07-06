@@ -24,7 +24,6 @@ public class CreatedNestedPresenter {
     private RenderedTemplate uihandlers;
     private RenderedTemplate view;
     private RenderedTemplate viewui;
-    private CreatedNameTokens nameTokens;
     
     public CreatedNestedPresenter() {
     }
@@ -67,14 +66,6 @@ public class CreatedNestedPresenter {
 
     public void setViewui(RenderedTemplate viewui) {
         this.viewui = viewui;
-    }
-    
-    public CreatedNameTokens getNameTokens() {
-        return nameTokens;
-    }
-
-    public void setNameTokens(CreatedNameTokens nameTokens) {
-        this.nameTokens = nameTokens;
     }
     
     @Override

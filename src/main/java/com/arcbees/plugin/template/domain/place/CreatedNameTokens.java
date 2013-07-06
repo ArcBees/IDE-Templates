@@ -22,19 +22,19 @@ import java.util.List;
 import com.arcbees.plugin.template.domain.presenter.RenderedTemplate;
 
 public class CreatedNameTokens {
-    private RenderedTemplate nameTokens;
+    private RenderedTemplate nameTokensFile;
     private List<String> fields;
     private List<String> methods;
 
     public CreatedNameTokens() {
     }
 
-    public RenderedTemplate getNameTokens() {
-        return nameTokens;
+    public RenderedTemplate getNameTokensFile() {
+        return nameTokensFile;
     }
 
-    public void setNameTokens(RenderedTemplate nameTokens) {
-        this.nameTokens = nameTokens;
+    public void setNameTokensFile(RenderedTemplate nameTokensFile) {
+        this.nameTokensFile = nameTokensFile;
     }
     
     public void addMethod(String method) {

@@ -21,10 +21,10 @@ import java.util.List;
 public class NameTokenOptions {
     private String packageName;
     private List<NameToken> nameTokens;
-    
+
     public NameTokenOptions() {
     }
-    
+
     public String getPackageName() {
         return packageName;
     }
@@ -39,5 +39,16 @@ public class NameTokenOptions {
 
     public void setNameTokens(List<NameToken> nameTokens) {
         this.nameTokens = nameTokens;
+    }
+
+    public String getMethodName(int index) {
+        if (nameTokens == null || nameTokens.size() - 1 < index) {
+            return "";
+        }
+        String nameToken = nameTokens.get(index).getToken();
+        String s = "";
+        s += nameToken.substring(0, 1).toUpperCase();
+        s += nameToken.substring(1);
+        return s;
     }
 }

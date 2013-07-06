@@ -17,18 +17,12 @@
 package com.arcbees.plugin.template.create.presenter;
 
 import java.io.StringWriter;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
 import org.apache.velocity.runtime.resource.loader.URLResourceLoader;
 
-import com.arcbees.plugin.template.create.place.CreateNameTokens;
-import com.arcbees.plugin.template.domain.place.CreatedNameTokens;
-import com.arcbees.plugin.template.domain.place.NameToken;
-import com.arcbees.plugin.template.domain.place.NameTokenOptions;
 import com.arcbees.plugin.template.domain.presenter.CreatedNestedPresenter;
 import com.arcbees.plugin.template.domain.presenter.NestedPresenterOptions;
 import com.arcbees.plugin.template.domain.presenter.PresenterOptions;
@@ -112,9 +106,9 @@ public class CreateNestedPresenter {
         context.put("revealType", nestedPresenterOptions.getRevealType());
         context.put("codesplit", nestedPresenterOptions.getCodeSplit());
         context.put("isplace", nestedPresenterOptions.getIsPlace());
-        context.put("nametoken", nestedPresenterOptions.getNameTokenCall());
         context.put("contentSlotImport", nestedPresenterOptions.getContentSlotImport());
         context.put("nameTokenImport", nestedPresenterOptions.getNameTokenImport());
+        context.put("nametoken", nestedPresenterOptions.getNameToken());
 
         return context;
     }
@@ -125,7 +119,6 @@ public class CreateNestedPresenter {
         processUiHandlers();
         processView();
         processViewBinder();
-        processNameTokens();
     }
 
     private void processModule() {
@@ -165,22 +158,6 @@ public class CreateNestedPresenter {
         template.merge(context, writer);
         RenderedTemplate rendered = new RenderedTemplate(renderFileName(fileName), writer.toString());
         return rendered;
-    }
-
-    private void processNameTokens() {
-        NameToken token = new NameToken();
-        token.setCrawlable(nestedPresenterOptions.getCrawlable());
-        token.setToken(nestedPresenterOptions.getNameToken());
-
-        List<NameToken> nameTokens = new ArrayList<NameToken>();
-        nameTokens.add(token);
-
-        NameTokenOptions nameTokenOptions = new NameTokenOptions();
-        nameTokenOptions.setPackageName(nestedPresenterOptions.getNameTokensPackageName());
-        nameTokenOptions.setNameTokens(nameTokens);
-
-        CreatedNameTokens createdNameToken = CreateNameTokens.run(nameTokenOptions, remote);
-        createdNestedPresenter.setNameTokens(createdNameToken);
     }
 
     private String renderFileName(String fileName) {
