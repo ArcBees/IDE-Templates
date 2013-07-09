@@ -1,18 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.sonatype.oss</groupId>
+        <artifactId>oss-parent</artifactId>
+        <version>7</version>
+    </parent>
 
     <groupId>com.arcbees.ide</groupId>
     <artifactId>templates</artifactId>
     <version>1.0.0-SNAPSHOT</version>
 
+    <name>ide-templates</name>
+    <url>https://github.com/ArcBees/IDE-Templates</url>
+    <description>IDE templates for Eclipse and IDEA plugins.</description>
+    <inceptionYear>2013</inceptionYear>
+
+    <organization>
+        <name>ArcBees.com</name>
+        <url>http://arcbees.com</url>
+    </organization>
+
+    <scm>
+        <url>https://github.com/ArcBees/IDE-Templates</url>
+        <connection>https://github.com/ArcBees/IDE-Templates.git</connection>
+        <developerConnection>https://github.com/ArcBees/IDE-Templates.git</developerConnection>
+    </scm>
+
+    <issueManagement>
+        <system>Jira</system>
+        <url>https://arcbees.atlassian.net/browse/GP</url>
+    </issueManagement>
+
+    <ciManagement>
+        <system>TeamCity</system>
+        <url>http://teamcity.arcbees.com</url>
+    </ciManagement>
+
+    <developers>
+        <developer>
+            <id>brandon.donnelson</id>
+            <name>Brandon Donnelson</name>
+            <email>brandon.donnelson@arcbees.com</email>
+            <organization>ArcBees</organization>
+            <organizationUrl>http://arcbees.com</organizationUrl>
+            <roles>
+                <role>developer</role>
+            </roles>
+        </developer>
+    </developers>
+
     <properties>
+        <!-- project -->
+        <target.jdk>1.6</target.jdk>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <!-- libs -->
         <velocity.version>1.7</velocity.version>
         <restassured.version>1.8.0</restassured.version>
         <junit.version>4.11</junit.version>
         <commons.version>1.9</commons.version>
         <commons-io.version>2.4</commons-io.version>
+
+        <!-- maven -->
+        <maven-compiler-plugin.version>2.3.2</maven-compiler-plugin.version>
     </properties>
+
+    <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>false</filtering>
+                <includes>
+                    <include>**/*.vm</include>
+                </includes>
+            </resource>
+        </resources>
+
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${maven-compiler-plugin.version}</version>
+                <configuration>
+                    <source>${target.jdk}</source>
+                    <target>${target.jdk}</target>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
     <dependencies>
         <dependency>
