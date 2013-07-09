@@ -63,12 +63,22 @@
         <junit.version>4.11</junit.version>
         <commons.version>1.9</commons.version>
         <commons-io.version>2.4</commons-io.version>
-        
+
         <!-- maven -->
         <maven-compiler-plugin.version>2.3.2</maven-compiler-plugin.version>
     </properties>
 
     <build>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>false</filtering>
+                <includes>
+                    <include>**/*.vm</include>
+                </includes>
+            </resource>
+        </resources>
+
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
