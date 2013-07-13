@@ -40,9 +40,8 @@ public class CreateNameTokensTest {
         NameTokenOptions nameTokenOptions = new NameTokenOptions();
         nameTokenOptions.setNameTokens(nameTokens);
 
-        CreatedNameTokens createdNameToken = CreateNameTokens.run(nameTokenOptions, false);
+        CreatedNameTokens createdNameToken = CreateNameTokens.run(nameTokenOptions, false, false);
         
-        Assert.assertNotNull(createdNameToken.getNameTokens().getContents());
         Assert.assertNotNull(createdNameToken.getFields());
         Assert.assertNotNull(createdNameToken.getMethods());
     }
