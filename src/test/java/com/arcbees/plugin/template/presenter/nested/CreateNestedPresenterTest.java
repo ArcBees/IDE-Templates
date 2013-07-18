@@ -16,6 +16,8 @@
 
 package com.arcbees.plugin.template.presenter.nested;
 
+import static org.junit.Assert.*;
+
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -34,7 +36,15 @@ public class CreateNestedPresenterTest {
         NestedPresenterOptions nestedPresenterOptions = new NestedPresenterOptions();
         nestedPresenterOptions.setCodeSplit(true);
         
-        CreatedNestedPresenter created = CreateNestedPresenter.run(presenterOptions, nestedPresenterOptions, false);
+        CreatedNestedPresenter created;
+		try {
+			created = CreateNestedPresenter.run(presenterOptions, nestedPresenterOptions, false);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			fail();
+			return;
+		}
         
         // Debugging
         System.out.println(created.getModule().getContents());
@@ -59,7 +69,13 @@ public class CreateNestedPresenterTest {
         NestedPresenterOptions nestedPresenterOptions = new NestedPresenterOptions();
         nestedPresenterOptions.setCodeSplit(true);
         
-        CreatedNestedPresenter created = CreateNestedPresenter.run(presenterOptions, nestedPresenterOptions, true);
+        CreatedNestedPresenter created;
+		try {
+			created = CreateNestedPresenter.run(presenterOptions, nestedPresenterOptions, true);
+		} catch (Exception e) {
+			fail();
+			return;
+		}
         
         // Debugging
         System.out.println(created.getModule().getContents());

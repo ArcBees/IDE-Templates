@@ -9,8 +9,8 @@
         <version>7</version>
     </parent>
 
-    <groupId>com.arcbees.ide</groupId>
-    <artifactId>templates</artifactId>
+    <groupId>com.arcbees.plugin</groupId>
+    <artifactId>plugin-templates</artifactId>
     <version>1.0.0-SNAPSHOT</version>
 
     <name>ide-templates</name>

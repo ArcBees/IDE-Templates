@@ -16,6 +16,8 @@
 
 package com.arcbees.plugin.template.place;
 
+import static org.junit.Assert.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,7 +42,15 @@ public class CreateNameTokensTest {
         NameTokenOptions nameTokenOptions = new NameTokenOptions();
         nameTokenOptions.setNameTokens(nameTokens);
 
-        CreatedNameTokens createdNameToken = CreateNameTokens.run(nameTokenOptions, false, false);
+        CreatedNameTokens createdNameToken;
+		try {
+			createdNameToken = CreateNameTokens.run(nameTokenOptions, false, false);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			fail();
+			return;
+		}
         
         Assert.assertNotNull(createdNameToken.getFields());
         Assert.assertNotNull(createdNameToken.getMethods());
