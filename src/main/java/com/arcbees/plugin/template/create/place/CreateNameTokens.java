@@ -32,7 +32,7 @@ import com.arcbees.plugin.template.domain.place.NameToken;
 import com.arcbees.plugin.template.domain.place.NameTokenOptions;
 import com.arcbees.plugin.template.domain.presenter.RenderedTemplate;
 import com.arcbees.plugin.template.utils.VelocityUtils;
-import com.arcbees.plugin.template.utils.velocity.VelocityEngineCustom;
+import com.arcbees.plugin.velocity.VelocityEngineCustom;
 
 public class CreateNameTokens {
     public final static Logger logger = Logger.getLogger(CreateNameTokens.class.getName());

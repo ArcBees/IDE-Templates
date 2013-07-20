@@ -32,7 +32,7 @@ import com.arcbees.plugin.template.domain.presenter.NestedPresenterOptions;
 import com.arcbees.plugin.template.domain.presenter.PresenterOptions;
 import com.arcbees.plugin.template.domain.presenter.RenderedTemplate;
 import com.arcbees.plugin.template.utils.VelocityUtils;
-import com.arcbees.plugin.template.utils.velocity.VelocityEngineCustom;
+import com.arcbees.plugin.velocity.VelocityEngineCustom;
 
 public class CreateNestedPresenter {
     public final static Logger logger = Logger.getLogger(CreateNestedPresenter.class.getName());

@@ -1,4 +1,4 @@
-package com.arcbees.plugin.template.utils.velocity;
+package com.arcbees.plugin.velocity;
 
 /*
  * Licensed to the Apache Software Foundation (ASF) under one
@@ -229,11 +229,14 @@ public class RuntimeInstanceCustom implements RuntimeConstants, RuntimeServices
      * </ul>
      * @throws Exception When an error occured during initialization.
      */
-    public synchronized void init()
+    public void init()
         throws Exception
     {
+    	System.out.println("\t~~~Velocity.RunTimeInstance: initializing=" + initializing + " initialized=" + initialized);
+    	
         if (!initialized && !initializing)
         {
+        	System.out.println("\t~~~Velocity.RunTimeInstance: is initializing");
             initializing = true;
 
             log.trace("*******************************************************************");
@@ -258,6 +261,8 @@ public class RuntimeInstanceCustom implements RuntimeConstants, RuntimeServices
 
             initialized = true;
             initializing = false;
+            
+            System.out.println("\t~~~Velocity.RunTimeInstance: SUCCESS INIT");
         }
     }
 
@@ -281,19 +286,7 @@ public class RuntimeInstanceCustom implements RuntimeConstants, RuntimeServices
 
         if (rm != null && rm.length() > 0)
         {
-            Object o = null;
-
-            try
-            {
-               o = ClassUtils.getNewInstance( rm );
-            }
-            catch (ClassNotFoundException cnfe)
-            {
-                String err = "The specified class for Uberspect (" + rm
-                    + ") does not exist or is not accessible to the current classloader.";
-                log.error(err);
-                throw new Exception(err);
-            }
+            Object o = new UberspectImplCustom();
 
             if (!(o instanceof Uberspect))
             {
@@ -560,6 +553,8 @@ public class RuntimeInstanceCustom implements RuntimeConstants, RuntimeServices
          */
 
         String rm = getString(RuntimeConstants.RESOURCE_MANAGER_CLASS);
+        
+        System.out.println("\t~~~ rm=" + rm);
 
         if (rm != null && rm.length() > 0)
         {
@@ -569,19 +564,7 @@ public class RuntimeInstanceCustom implements RuntimeConstants, RuntimeServices
              *  this a huge error and throw
              */
 
-            Object o = null;
-
-            try
-            {
-               o = ClassUtils.getNewInstance( rm );
-            }
-            catch (ClassNotFoundException cnfe )
-            {
-                String err = "The specified class for ResourceManager (" + rm
-                    + ") does not exist or is not accessible to the current classloader.";
-                log.error(err);
-                throw new Exception(err);
-            }
+        	ResourceManagerImplCustom o = new ResourceManagerImplCustom();
 
             if (!(o instanceof ResourceManager))
             {
@@ -590,7 +573,8 @@ public class RuntimeInstanceCustom implements RuntimeConstants, RuntimeServices
                     + "; Velocity is not initialized correctly.";
 
                 log.error(err);
-                throw new Exception(err);
+                //throw new Exception(err);
+                System.out.println("ERROR but try to bypass");
             }
 
             resourceManager = (ResourceManager) o;
@@ -878,20 +862,7 @@ public class RuntimeInstanceCustom implements RuntimeConstants, RuntimeServices
              *  this a huge error and throw
              */
 
-            Object o = null;
-
-            try
-            {
-                o = ClassUtils.getNewInstance( pp );
-            }
-            catch (ClassNotFoundException cnfe )
-            {
-                String err = "The specified class for ParserPool ("
-                    + pp
-                    + ") does not exist (or is not accessible to the current classloader.";
-                log.error(err);
-                throw new Exception(err);
-            }
+            Object o = new ParserPoolImplCustom();
 
             if (!(o instanceof ParserPool))
             {

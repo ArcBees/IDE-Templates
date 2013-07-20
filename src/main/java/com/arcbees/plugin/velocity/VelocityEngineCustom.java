@@ -1,4 +1,4 @@
-package com.arcbees.plugin.template.utils.velocity;
+package com.arcbees.plugin.velocity;
 
 /*
  * Licensed to the Apache Software Foundation (ASF) under one
@@ -67,7 +67,7 @@ import org.apache.velocity.runtime.parser.node.SimpleNode;
  */
 public class VelocityEngineCustom implements RuntimeConstants
 {
-    private RuntimeInstanceCustom ri = new RuntimeInstanceCustom();
+    private RuntimeInstanceCustom ri = null;
 
 
     /**
@@ -79,7 +79,8 @@ public class VelocityEngineCustom implements RuntimeConstants
     }
     
     public void reset() {
-    	ri.reset();
+    	System.out.println("\t~~~Velocity.reset()");
+    	ri = null;
     }
 
     /**
@@ -92,6 +93,8 @@ public class VelocityEngineCustom implements RuntimeConstants
     public VelocityEngineCustom(String propsFilename)
         throws Exception
     {
+    	ri = null;
+    	ri = new RuntimeInstanceCustom();
         ri.init(propsFilename);
     }
 
@@ -105,6 +108,8 @@ public class VelocityEngineCustom implements RuntimeConstants
     public VelocityEngineCustom(Properties p)
         throws Exception
     {
+    	ri = null;
+    	ri = new RuntimeInstanceCustom();
         ri.init(p);
     }
 
@@ -116,6 +121,8 @@ public class VelocityEngineCustom implements RuntimeConstants
     public void init()
         throws Exception
     {
+    	ri = null;
+    	ri = new RuntimeInstanceCustom();
         ri.init();
     }
 
@@ -130,6 +137,8 @@ public class VelocityEngineCustom implements RuntimeConstants
     public void init(String propsFilename)
         throws Exception
     {
+    	ri = null;
+    	ri = new RuntimeInstanceCustom();
         ri.init(propsFilename);
     }
 
@@ -144,6 +153,8 @@ public class VelocityEngineCustom implements RuntimeConstants
     public void init(Properties p)
         throws Exception
     {
+    	ri = null;
+    	ri = new RuntimeInstanceCustom();
         ri.init(p);
     }
 

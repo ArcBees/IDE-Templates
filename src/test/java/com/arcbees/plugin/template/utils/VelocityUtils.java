@@ -23,7 +23,7 @@ import org.apache.velocity.runtime.resource.ResourceCacheImpl;
 import org.apache.velocity.runtime.resource.ResourceManagerImpl;
 import org.apache.velocity.runtime.resource.loader.URLResourceLoader;
 
-import com.arcbees.plugin.template.utils.velocity.VelocityEngineCustom;
+import com.arcbees.plugin.velocity.VelocityEngineCustom;
 
 public class VelocityUtils {
 	public static VelocityEngineCustom createRemoveVelocityEngine(String remoteBaseUrl) throws Exception {
