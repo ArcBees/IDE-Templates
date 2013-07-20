@@ -126,7 +126,6 @@
             <groupId>org.apache.velocity</groupId>
             <artifactId>velocity</artifactId>
             <version>${velocity.version}</version>
-            <scope>test</scope>
         </dependency>
     </dependencies>
 </project>

@@ -16,7 +16,7 @@
 
 package com.arcbees.plugin.template.presenter.nested;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.fail;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -90,4 +90,31 @@ public class CreateNestedPresenterTest {
         Assert.assertNotNull(created.getView().getContents());
         Assert.assertNotNull(created.getViewui().getContents());
     }
+    
+//    private void generate() {
+//        // project settings
+//        String groupId = projectConfigModel.getGroupId();
+//        String artifactId = projectConfigModel.getArtifactId();
+//        String version = projectConfigModel.getVersion();
+//        String javaPackage = projectConfigModel.getPackageName();
+//        
+//        // config
+//        Properties properties = new Properties();
+//
+//        // TODO need to get from directory and add to directory the required properties.
+//        properties.put("module", projectConfigModel.getModuleName());
+//        archetype.setProperties(properties);
+//        // TODO 
+//        
+//        ProjectImportConfiguration configuration = new ProjectImportConfiguration();
+//
+//        IProjectConfigurationManager projectConfig = MavenPlugin.getProjectConfigurationManager();
+//        try {
+//            projectConfig.createArchetypeProjects(location, archetype, groupId, artifactId, version, javaPackage,
+//                    properties, configuration, monitor);
+//        } catch (CoreException e) {
+//            // TODO display error
+//            e.printStackTrace();
+//        }
+//    }
 }

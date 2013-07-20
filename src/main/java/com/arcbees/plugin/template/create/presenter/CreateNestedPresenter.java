@@ -81,6 +81,7 @@ public class CreateNestedPresenter {
             logger.log(Level.SEVERE, "Velocity Init Error Local", e);
             e.printStackTrace();
         }
+        
     }
 
     private void setupVelocityRemote() throws Exception {
