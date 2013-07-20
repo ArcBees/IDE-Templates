@@ -21,12 +21,12 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.apache.velocity.Template;
-import org.apache.velocity.VelocityContext;
-import org.apache.velocity.app.VelocityEngine;
-import org.apache.velocity.exception.ParseErrorException;
-import org.apache.velocity.exception.ResourceNotFoundException;
-import org.apache.velocity.runtime.resource.loader.URLResourceLoader;
+import arcbees.org.apache.velocity.Template;
+import arcbees.org.apache.velocity.VelocityContext;
+import arcbees.org.apache.velocity.app.VelocityEngine;
+import arcbees.org.apache.velocity.exception.ParseErrorException;
+import arcbees.org.apache.velocity.exception.ResourceNotFoundException;
+import arcbees.org.apache.velocity.runtime.resource.loader.URLResourceLoader;
 
 import com.arcbees.plugin.template.domain.place.CreatedNameTokens;
 import com.arcbees.plugin.template.domain.place.NameToken;

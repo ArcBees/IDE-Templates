@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <jardesc>
     <jar path="com.arcbees.plugin.eclipse/lib/ide-templates.jar"/>
-    <options buildIfNeeded="true" compress="true" descriptionLocation="/templates/ide-templates-jar-export.jardesc" exportErrors="true" exportWarnings="true" includeDirectoryEntries="false" overwrite="true" saveDescription="true" storeRefactorings="false" useSourceFolders="false"/>
+    <options buildIfNeeded="true" compress="true" descriptionLocation="/plugin-templates/ide-templates.jardesc" exportErrors="true" exportWarnings="true" includeDirectoryEntries="false" overwrite="true" saveDescription="true" storeRefactorings="false" useSourceFolders="false"/>
     <storedRefactorings deprecationInfo="true" structuralOnly="false"/>
     <selectedProjects/>
     <manifest generateManifest="true" manifestLocation="" manifestVersion="1.0" reuseManifest="false" saveManifest="false" usesManifest="true">
@@ -11,9 +11,10 @@
         </sealing>
     </manifest>
     <selectedElements exportClassFiles="true" exportJavaFiles="true" exportOutputFolder="false">
-        <javaElement handleIdentifier="=templates/src\/test\/java"/>
-        <folder path="/templates/src"/>
-        <javaElement handleIdentifier="=templates/src\/main\/java"/>
-        <javaElement handleIdentifier="=templates/src\/main\/resources"/>
+        <javaElement handleIdentifier="=plugin-templates/src\/main\/java"/>
+        <javaElement handleIdentifier="=plugin-templates/src\/test\/java"/>
+        <folder path="/plugin-templates/src"/>
+        <javaElement handleIdentifier="=plugin-templates/src\/main\/resources"/>
+        <folder path="/plugin-templates/lib"/>
     </selectedElements>
 </jardesc>

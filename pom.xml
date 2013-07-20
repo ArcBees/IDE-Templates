@@ -58,7 +58,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <!-- libs -->
-        <velocity.version>1.7</velocity.version>
+        <!-- <velocity.version>1.7</velocity.version> -->
         <restassured.version>1.8.0</restassured.version>
         <junit.version>4.11</junit.version>
         <commons.version>1.9</commons.version>
@@ -94,12 +94,12 @@
     </build>
 
     <dependencies>
-        <dependency>
+       <!--  <dependency>
             <groupId>org.apache.velocity</groupId>
             <artifactId>velocity</artifactId>
             <version>${velocity.version}</version>
             <scope>test</scope>
-        </dependency>
+        </dependency> -->
         <dependency>
             <groupId>com.jayway.restassured</groupId>
             <artifactId>rest-assured</artifactId>
