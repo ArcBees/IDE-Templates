@@ -21,6 +21,7 @@ import java.util.Properties;
 import org.apache.velocity.app.VelocityEngine;
 import org.apache.velocity.runtime.RuntimeConstants;
 import org.apache.velocity.runtime.log.AvalonLogChute;
+import org.apache.velocity.runtime.resource.ResourceCacheImpl;
 import org.apache.velocity.runtime.resource.ResourceManagerImpl;
 import org.apache.velocity.runtime.resource.loader.URLResourceLoader;
 
@@ -32,7 +33,7 @@ public class VelocityUtils {
 		properties.setProperty("url.resource.loader.timeout", "5000");
 		properties.setProperty("url.resource.loader.root", remoteBaseUrl);
 		properties.setProperty(RuntimeConstants.RESOURCE_MANAGER_CLASS, ResourceManagerImpl.class.getName());
-		properties.setProperty(RuntimeConstants.RUNTIME_LOG_LOGSYSTEM_CLASS, AvalonLogChute.class.getName());
+		properties.setProperty(RuntimeConstants.RESOURCE_MANAGER_CACHE_CLASS, ResourceCacheImpl.class.getName());
 		
 		VelocityEngine velocityEngine;
 		try {			

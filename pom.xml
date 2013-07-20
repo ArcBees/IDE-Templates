@@ -94,12 +94,6 @@
     </build>
 
     <dependencies>
-       <dependency>
-            <groupId>org.apache.velocity</groupId>
-            <artifactId>velocity</artifactId>
-            <version>${velocity.version}</version>
-            <scope>test</scope>
-        </dependency>
         <dependency>
             <groupId>com.jayway.restassured</groupId>
             <artifactId>rest-assured</artifactId>
@@ -127,6 +121,12 @@
             <groupId>org.apache.directory.studio</groupId>
             <artifactId>org.apache.commons.collections</artifactId>
             <version>3.2.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.velocity</groupId>
+            <artifactId>velocity</artifactId>
+            <version>${velocity.version}</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 </project>
