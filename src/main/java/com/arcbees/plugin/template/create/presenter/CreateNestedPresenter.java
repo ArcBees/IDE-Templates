@@ -25,6 +25,7 @@ import arcbees.org.apache.velocity.VelocityContext;
 import arcbees.org.apache.velocity.app.VelocityEngine;
 import arcbees.org.apache.velocity.exception.ParseErrorException;
 import arcbees.org.apache.velocity.exception.ResourceNotFoundException;
+import arcbees.org.apache.velocity.runtime.RuntimeConstants;
 import arcbees.org.apache.velocity.runtime.resource.loader.URLResourceLoader;
 
 import com.arcbees.plugin.template.domain.presenter.CreatedNestedPresenter;
@@ -80,12 +81,14 @@ public class CreateNestedPresenter {
 
     private void setupVelocityRemote() {
         try {
-            URLResourceLoader loader = new URLResourceLoader();
+//            URLResourceLoader loader = new URLResourceLoader();
             velocityEngine = new VelocityEngine();
-            velocityEngine.setProperty("resource.loader", "url");
-            velocityEngine.setProperty("url.resource.loader.instance", loader);
+            velocityEngine.setProperty(RuntimeConstants.RESOURCE_LOADER, "url");
+            velocityEngine.setProperty(RuntimeConstants.RESOURCE_MANAGER_CLASS, URLResourceLoader.class.getName());
+//            velocityEngine.setProperty("url.resource.loader.instance", loader);
             velocityEngine.setProperty("url.resource.loader.timeout", new Integer(5000));
             velocityEngine.setProperty("url.resource.loader.root", BASE_REMOTE);
+            velocityEngine.setProperty("runtime.log.logsystem.class", "arcbees.org.apache.velocity.runtime.log.AvalonLogChute");
             velocityEngine.init();
         } catch (Exception e) {
             logger.log(Level.SEVERE, "Velocity Init Error", e);

@@ -94,6 +94,7 @@ public class CreateNameTokens {
         velocityEngine.setProperty("url.resource.loader.instance", loader);
         velocityEngine.setProperty("url.resource.loader.timeout", new Integer(5000));
         velocityEngine.setProperty("url.resource.loader.root", BASE_REMOTE);
+        velocityEngine.setProperty("runtime.log.logsystem.class", "arcbees.org.apache.velocity.runtime.log.AvalonLogChute");
         velocityEngine.init();
     }
 

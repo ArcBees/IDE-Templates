@@ -1,1 +1,1 @@
-rule org.apache.** arcbees.org.apache.@1
+rule org.apache.velocity.** arcbees.org.apache.velocity.@1
