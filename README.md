@@ -16,4 +16,5 @@ Export this project as a jar. In the future Maven can do this.
 
 1. Export jar
 2. Either run eclipse export, or load the eclipse export jardesc.
-3. Copy the jar into the Eclipse plugin lib directory. 
+3. The jar exports into target/build/ide-templates.jar.
+4. Copy the jar into the Eclipse plugin lib directory. 
