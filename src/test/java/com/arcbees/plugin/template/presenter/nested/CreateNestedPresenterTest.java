@@ -91,6 +91,48 @@ public class CreateNestedPresenterTest {
         Assert.assertNotNull(created.getViewui().getContents());
     }
     
+    @Test
+    public void testBothLocalandRemote() {
+    	testLocal();
+    	testRemote();
+    }
+
+	private void testRemote() {
+		PresenterOptions presenterOptions = new PresenterOptions();
+        presenterOptions.setPackageName("com.arcbees.project.client.app");
+        presenterOptions.setName("MyAppHome");
+        
+        NestedPresenterOptions nestedPresenterOptions = new NestedPresenterOptions();
+        nestedPresenterOptions.setCodeSplit(true);
+        
+        CreatedNestedPresenter created;
+		try {
+			created = CreateNestedPresenter.run(presenterOptions, nestedPresenterOptions, true);
+		} catch (Exception e) {
+			fail();
+			return;
+		}
+	}
+
+	private void testLocal() {
+		PresenterOptions presenterOptions = new PresenterOptions();
+        presenterOptions.setPackageName("com.arcbees.project.client.app");
+        presenterOptions.setName("MyAppHome");
+        
+        NestedPresenterOptions nestedPresenterOptions = new NestedPresenterOptions();
+        nestedPresenterOptions.setCodeSplit(true);
+        
+        CreatedNestedPresenter created;
+		try {
+			created = CreateNestedPresenter.run(presenterOptions, nestedPresenterOptions, false);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			fail();
+			return;
+		}
+	}
+    
 //    private void generate() {
 //        // project settings
 //        String groupId = projectConfigModel.getGroupId();

@@ -11,8 +11,8 @@
         </sealing>
     </manifest>
     <selectedElements exportClassFiles="true" exportJavaFiles="true" exportOutputFolder="false">
-        <javaElement handleIdentifier="=plugin-templates/src\/test\/java"/>
         <javaElement handleIdentifier="=plugin-templates/src\/main\/java"/>
+        <javaElement handleIdentifier="=plugin-templates/src\/test\/java"/>
         <folder path="/plugin-templates/src"/>
         <javaElement handleIdentifier="=plugin-templates/src\/main\/resources"/>
     </selectedElements>

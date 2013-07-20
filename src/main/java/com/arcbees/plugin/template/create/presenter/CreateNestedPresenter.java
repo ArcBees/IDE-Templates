@@ -32,6 +32,7 @@ import com.arcbees.plugin.template.domain.presenter.NestedPresenterOptions;
 import com.arcbees.plugin.template.domain.presenter.PresenterOptions;
 import com.arcbees.plugin.template.domain.presenter.RenderedTemplate;
 import com.arcbees.plugin.template.utils.VelocityUtils;
+import com.arcbees.plugin.template.utils.velocity.VelocityEngineCustom;
 
 public class CreateNestedPresenter {
     public final static Logger logger = Logger.getLogger(CreateNestedPresenter.class.getName());
@@ -50,7 +51,7 @@ public class CreateNestedPresenter {
     private final PresenterOptions presenterOptions;
     private final NestedPresenterOptions nestedPresenterOptions;
 
-    private VelocityEngine velocityEngine;
+    private VelocityEngineCustom velocityEngine;
     private CreatedNestedPresenter createdNestedPresenter;
     private boolean remote;
 
@@ -74,11 +75,10 @@ public class CreateNestedPresenter {
     }
 
     private void setupVelocityLocal() {
-        velocityEngine = new VelocityEngine();
+        velocityEngine = new VelocityEngineCustom();
         velocityEngine.setProperty(VelocityEngine.FILE_RESOURCE_LOADER_PATH, BASE_LOCAL);
         try {
-        	Velocity.reset();
-        	Velocity.init();
+        	velocityEngine.reset();
             velocityEngine.init();
         } catch (Exception e) {
             logger.log(Level.SEVERE, "Velocity Init Error Local", e);
