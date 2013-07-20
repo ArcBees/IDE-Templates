@@ -12,5 +12,8 @@ These are some rough directions to building this lib.
 [Repackage Velocity](repackage/README.md)
 
 ###Eclipse Export Jar
-1. Export this package jar to eclipse plugin lib directory using ide-templates.jardesc, or Jar Export. 
-2. TODO have maven build jar 
+Export this project as a jar. In the future Maven can do this. 
+
+1. Export jar
+2. Either run eclipse export, or load the eclipse export jardesc.
+3. Copy the jar into the Eclipse plugin lib directory. 
