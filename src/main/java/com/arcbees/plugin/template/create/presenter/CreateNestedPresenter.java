@@ -17,12 +17,13 @@
 package com.arcbees.plugin.template.create.presenter;
 
 import java.io.StringWriter;
-import java.util.Map;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.Velocity;
+import org.apache.velocity.app.VelocityEngine;
 import org.apache.velocity.exception.ParseErrorException;
 import org.apache.velocity.exception.ResourceNotFoundException;
 
@@ -30,8 +31,7 @@ import com.arcbees.plugin.template.domain.presenter.CreatedNestedPresenter;
 import com.arcbees.plugin.template.domain.presenter.NestedPresenterOptions;
 import com.arcbees.plugin.template.domain.presenter.PresenterOptions;
 import com.arcbees.plugin.template.domain.presenter.RenderedTemplate;
-import com.arcbees.plugin.template.utils.FetchTemplate;
-import com.arcbees.plugin.template.utils.FetchTemplates;
+import com.arcbees.plugin.template.utils.VelocityUtils;
 
 public class CreateNestedPresenter {
     public final static Logger logger = Logger.getLogger(CreateNestedPresenter.class.getName());
@@ -46,18 +46,13 @@ public class CreateNestedPresenter {
 
     private static final String BASE_REMOTE = "https://raw.github.com/ArcBees/IDE-Templates/1.0.0/src/main/resources/com/arcbees/plugin/template/presenter/nested/";
     private final static String BASE_LOCAL = "./src/main/resources/com/arcbees/plugin/template/presenter/nested/";
-	private static final String TEMPLATE_MODULE = "__name__Module.java.vm";
-	private static final String TEMPLATE_PRESENTER = "__name__Presenter.java.vm";
-	private static final String TEMPLATE_UIHANDLERS = "__name__UiHandlers.java.vm";
-	private static final String TEMPLATE_VIEW = "__name__View.java.vm";
-	private static final String TEMPLATE_VIEWUI = "__name__View.ui.xml.vm";
 
     private final PresenterOptions presenterOptions;
     private final NestedPresenterOptions nestedPresenterOptions;
 
+    private VelocityEngine velocityEngine;
     private CreatedNestedPresenter createdNestedPresenter;
     private boolean remote;
-	private Map<String, FetchTemplate> fetchedTemplates;
 
     private CreateNestedPresenter(PresenterOptions presenterOptions, NestedPresenterOptions nestedPresenterOptions,
             boolean remote) {
@@ -68,28 +63,39 @@ public class CreateNestedPresenter {
 
     private void run() throws Exception {
         createdNestedPresenter = new CreatedNestedPresenter();
-        
-        fetchTemplates();
-        
-        if (fetchedTemplates != null && fetchedTemplates.size() > 0) {
-        	process();
+
+        if (remote) {
+            setupVelocityRemote();
         } else {
-        	throw new Exception("ERROR: Couldn't fetch templates...");
+            setupVelocityLocal();
         }
+
+        process();
     }
 
-    private void fetchTemplates() {
-		FetchTemplates fetchTemplates = new FetchTemplates();
-		fetchTemplates.setRootPath(BASE_REMOTE);
-		fetchTemplates.addPath(TEMPLATE_MODULE);
-		fetchTemplates.addPath(TEMPLATE_PRESENTER);
-		fetchTemplates.addPath(TEMPLATE_UIHANDLERS);
-		fetchTemplates.addPath(TEMPLATE_VIEW);
-		fetchTemplates.addPath(TEMPLATE_VIEWUI);
-		fetchTemplates.run();
-		
-		fetchedTemplates = fetchTemplates.getPathsToFetch();
-	}
+    private void setupVelocityLocal() {
+        velocityEngine = new VelocityEngine();
+        velocityEngine.setProperty(VelocityEngine.FILE_RESOURCE_LOADER_PATH, BASE_LOCAL);
+        try {
+        	Velocity.reset();
+        	Velocity.init();
+            velocityEngine.init();
+        } catch (Exception e) {
+            logger.log(Level.SEVERE, "Velocity Init Error Local", e);
+            e.printStackTrace();
+        }
+        
+    }
+
+    private void setupVelocityRemote() throws Exception {
+    	try {
+            velocityEngine = VelocityUtils.createRemoveVelocityEngine(BASE_REMOTE);
+        } catch (Exception e) {
+            logger.log(Level.SEVERE, "Velocity Init Error", e);
+            e.printStackTrace();
+            throw e;
+        }
+    }
 
     private CreatedNestedPresenter getCreatedNestedPresenter() {
         return createdNestedPresenter;
@@ -131,42 +137,40 @@ public class CreateNestedPresenter {
     }
 
     private void processModule() throws ResourceNotFoundException, ParseErrorException, Exception {
-        RenderedTemplate rendered = processTemplate(TEMPLATE_MODULE);
+        String fileName = "__name__Module.java.vm";
+        RenderedTemplate rendered = processTemplate(fileName);
         createdNestedPresenter.setModule(rendered);
     }
 
     private void processPresenter() throws ResourceNotFoundException, ParseErrorException, Exception {
-        RenderedTemplate rendered = processTemplate(TEMPLATE_PRESENTER);
+        String fileName = "__name__Presenter.java.vm";
+        RenderedTemplate rendered = processTemplate(fileName);
         createdNestedPresenter.setPresenter(rendered);
     }
 
     private void processUiHandlers() throws ResourceNotFoundException, ParseErrorException, Exception {
-        RenderedTemplate rendered = processTemplate(TEMPLATE_UIHANDLERS);
+        String fileName = "__name__UiHandlers.java.vm";
+        RenderedTemplate rendered = processTemplate(fileName);
         createdNestedPresenter.setUihandlers(rendered);
     }
 
     private void processView() throws ResourceNotFoundException, ParseErrorException, Exception {
-        RenderedTemplate rendered = processTemplate(TEMPLATE_VIEW);
+        String fileName = "__name__View.java.vm";
+        RenderedTemplate rendered = processTemplate(fileName);
         createdNestedPresenter.setView(rendered);
     }
 
     private void processViewBinder() throws ResourceNotFoundException, ParseErrorException, Exception {
-        RenderedTemplate rendered = processTemplate(TEMPLATE_VIEWUI);
+        String fileName = "__name__View.ui.xml.vm";
+        RenderedTemplate rendered = processTemplate(fileName);
         createdNestedPresenter.setViewui(rendered);
     }
 
     private RenderedTemplate processTemplate(String fileName) throws ResourceNotFoundException, ParseErrorException, Exception {
-        FetchTemplate template = fetchedTemplates.get(fileName);
-        
+        Template template = velocityEngine.getTemplate(fileName);
         VelocityContext context = getBaseVelocityContext();
-        
-		Template veloTemp = new Template();
-		veloTemp.setName(template.getFileName());
-		veloTemp.setData(template.getFetched());
-		veloTemp.setEncoding("UTF-8");
-		
         StringWriter writer = new StringWriter();
-        veloTemp.merge(context, writer);
+        template.merge(context, writer);
         RenderedTemplate rendered = new RenderedTemplate(renderFileName(fileName), writer.toString());
         return rendered;
     }
