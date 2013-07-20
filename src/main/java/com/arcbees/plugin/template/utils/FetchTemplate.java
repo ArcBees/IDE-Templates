@@ -19,19 +19,22 @@ package com.arcbees.plugin.template.utils;
 import com.jayway.restassured.RestAssured;
 
 public class FetchTemplate implements Runnable {
-    private String url;
+	private String rootPath;
+    private String file;
     private String fetched;
-
-    public FetchTemplate(String url) {
-        this.url = url;
+	
+    public FetchTemplate(String rootPath, String file) {
+    	this.rootPath = rootPath;
+        this.file = file;
     }
 
-    public void run() {
+	public void run() {
         this.fetched = fetch();
     }
 
     // TODO deal with errors
     private String fetch() {
+    	String url = rootPath + file;
         return RestAssured.get(url).asString();
     }
     
@@ -44,7 +47,7 @@ public class FetchTemplate implements Runnable {
     }
     
     public String getFileName() {
-        String fileName = url.replaceAll(".*/", "");
+        String fileName = file.replaceAll(".*/", "");
         return fileName;
     }
 }

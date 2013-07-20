@@ -25,10 +25,15 @@ import java.util.concurrent.Executors;
 public class FetchTemplates {
     private ExecutorService executor;
     private Map<String, FetchTemplate> pathsToFetch;
+	private String rootPath;
     
     public FetchTemplates() {
     }
     
+	public void setRootPath(String rootPath) {
+		this.rootPath = rootPath;
+	}
+	
     public void addPath(String path) {
         if (pathsToFetch == null) {
             pathsToFetch = new HashMap<String, FetchTemplate>();
@@ -64,7 +69,7 @@ public class FetchTemplates {
     }
 
     private void initThread(String path) {
-        FetchTemplate fetch = new FetchTemplate(path);
+        FetchTemplate fetch = new FetchTemplate(rootPath, path);
         pathsToFetch.put(path, fetch);
         executor.execute(fetch);
     }
