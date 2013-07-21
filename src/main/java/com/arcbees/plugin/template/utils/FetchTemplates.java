@@ -25,36 +25,36 @@ import java.util.concurrent.Executors;
 public class FetchTemplates {
     private ExecutorService executor;
     private Map<String, FetchTemplate> pathsToFetch;
-	private String rootPath;
-    
+    private String rootPath;
+
     public FetchTemplates() {
     }
-    
-	public void setRootPath(String rootPath) {
-		this.rootPath = rootPath;
-	}
-	
+
+    public void setRootPath(String rootPath) {
+        this.rootPath = rootPath;
+    }
+
     public void addPath(String path) {
         if (pathsToFetch == null) {
             pathsToFetch = new HashMap<String, FetchTemplate>();
         }
-        
+
         pathsToFetch.put(path, null);
     }
 
     public Map<String, FetchTemplate> getPathsToFetch() {
         return pathsToFetch;
     }
-    
+
     public void run() {
         if (pathsToFetch == null || pathsToFetch.isEmpty()) {
             return;
         }
-        
+
         executor = Executors.newFixedThreadPool(pathsToFetch.keySet().size());
-        
+
         startThreads();
-        
+
         executor.shutdown();
         // Wait until all threads are finish
         while (!executor.isTerminated()) {
