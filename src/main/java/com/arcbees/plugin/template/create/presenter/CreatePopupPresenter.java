@@ -23,7 +23,7 @@ public class CreatePopupPresenter {
     public static void run(PresenterOptions presenterOptions, PopupPresenterOptions popupPresenterOptions) {
         new CreatePopupPresenter(presenterOptions, popupPresenterOptions).run();
     }
-    
+
     private PresenterOptions presenterOptions;
     private PopupPresenterOptions popupPresenterOptions;
 
@@ -31,8 +31,8 @@ public class CreatePopupPresenter {
         this.presenterOptions = presenterOptions;
         this.popupPresenterOptions = popupPresenterOptions;
     }
-    
+
     private void run() {
-        
+
     }
 }

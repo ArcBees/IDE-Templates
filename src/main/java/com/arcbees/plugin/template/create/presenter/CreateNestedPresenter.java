@@ -17,20 +17,28 @@
 package com.arcbees.plugin.template.create.presenter;
 
 import java.io.StringWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
+import org.apache.velocity.app.Velocity;
 import org.apache.velocity.app.VelocityEngine;
-import org.apache.velocity.runtime.resource.loader.URLResourceLoader;
+import org.apache.velocity.exception.ParseErrorException;
+import org.apache.velocity.exception.ResourceNotFoundException;
 
 import com.arcbees.plugin.template.domain.presenter.CreatedNestedPresenter;
 import com.arcbees.plugin.template.domain.presenter.NestedPresenterOptions;
 import com.arcbees.plugin.template.domain.presenter.PresenterOptions;
 import com.arcbees.plugin.template.domain.presenter.RenderedTemplate;
+import com.arcbees.plugin.template.utils.VelocityUtils;
+import com.arcbees.plugin.velocity.VelocityEngineCustom;
 
 public class CreateNestedPresenter {
+    public final static Logger logger = Logger.getLogger(CreateNestedPresenter.class.getName());
+            
     public static CreatedNestedPresenter run(PresenterOptions presenterOptions,
-            NestedPresenterOptions nestedPresenterOptions, boolean remote) {
+            NestedPresenterOptions nestedPresenterOptions, boolean remote) throws Exception {
         CreateNestedPresenter createNestedPresenter = new CreateNestedPresenter(presenterOptions,
                 nestedPresenterOptions, remote);
         createNestedPresenter.run();
@@ -43,7 +51,7 @@ public class CreateNestedPresenter {
     private final PresenterOptions presenterOptions;
     private final NestedPresenterOptions nestedPresenterOptions;
 
-    private VelocityEngine velocityEngine;
+    private VelocityEngineCustom velocityEngine;
     private CreatedNestedPresenter createdNestedPresenter;
     private boolean remote;
 
@@ -54,7 +62,7 @@ public class CreateNestedPresenter {
         this.remote = remote;
     }
 
-    private void run() {
+    private void run() throws Exception {
         createdNestedPresenter = new CreatedNestedPresenter();
 
         if (remote) {
@@ -67,19 +75,25 @@ public class CreateNestedPresenter {
     }
 
     private void setupVelocityLocal() {
-        velocityEngine = new VelocityEngine();
+        velocityEngine = new VelocityEngineCustom();
         velocityEngine.setProperty(VelocityEngine.FILE_RESOURCE_LOADER_PATH, BASE_LOCAL);
-        velocityEngine.init();
+        try {
+        	velocityEngine.reset();
+            velocityEngine.init();
+        } catch (Exception e) {
+            logger.log(Level.SEVERE, "Velocity Init Error Local", e);
+            e.printStackTrace();
+        }
     }
 
-    private void setupVelocityRemote() {
-        URLResourceLoader loader = new URLResourceLoader();
-        velocityEngine = new VelocityEngine();
-        velocityEngine.setProperty("resource.loader", "url");
-        velocityEngine.setProperty("url.resource.loader.instance", loader);
-        velocityEngine.setProperty("url.resource.loader.timeout", new Integer(5000));
-        velocityEngine.setProperty("url.resource.loader.root", BASE_REMOTE);
-        velocityEngine.init();
+    private void setupVelocityRemote() throws Exception {
+    	try {
+            velocityEngine = VelocityUtils.createRemoveVelocityEngine(BASE_REMOTE);
+        } catch (Exception e) {
+            logger.log(Level.SEVERE, "Velocity Init Error", e);
+            e.printStackTrace();
+            throw e;
+        }
     }
 
     private CreatedNestedPresenter getCreatedNestedPresenter() {
@@ -113,7 +127,7 @@ public class CreateNestedPresenter {
         return context;
     }
 
-    private void process() {
+    private void process() throws ResourceNotFoundException, ParseErrorException, Exception {
         processModule();
         processPresenter();
         processUiHandlers();
@@ -121,37 +135,37 @@ public class CreateNestedPresenter {
         processViewBinder();
     }
 
-    private void processModule() {
+    private void processModule() throws ResourceNotFoundException, ParseErrorException, Exception {
         String fileName = "__name__Module.java.vm";
         RenderedTemplate rendered = processTemplate(fileName);
         createdNestedPresenter.setModule(rendered);
     }
 
-    private void processPresenter() {
+    private void processPresenter() throws ResourceNotFoundException, ParseErrorException, Exception {
         String fileName = "__name__Presenter.java.vm";
         RenderedTemplate rendered = processTemplate(fileName);
         createdNestedPresenter.setPresenter(rendered);
     }
 
-    private void processUiHandlers() {
+    private void processUiHandlers() throws ResourceNotFoundException, ParseErrorException, Exception {
         String fileName = "__name__UiHandlers.java.vm";
         RenderedTemplate rendered = processTemplate(fileName);
         createdNestedPresenter.setUihandlers(rendered);
     }
 
-    private void processView() {
+    private void processView() throws ResourceNotFoundException, ParseErrorException, Exception {
         String fileName = "__name__View.java.vm";
         RenderedTemplate rendered = processTemplate(fileName);
         createdNestedPresenter.setView(rendered);
     }
 
-    private void processViewBinder() {
+    private void processViewBinder() throws ResourceNotFoundException, ParseErrorException, Exception {
         String fileName = "__name__View.ui.xml.vm";
         RenderedTemplate rendered = processTemplate(fileName);
         createdNestedPresenter.setViewui(rendered);
     }
 
-    private RenderedTemplate processTemplate(String fileName) {
+    private RenderedTemplate processTemplate(String fileName) throws ResourceNotFoundException, ParseErrorException, Exception {
         Template template = velocityEngine.getTemplate(fileName);
         VelocityContext context = getBaseVelocityContext();
         StringWriter writer = new StringWriter();
