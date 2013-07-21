@@ -21,17 +21,18 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import arcbees.org.apache.velocity.Template;
-import arcbees.org.apache.velocity.VelocityContext;
-import arcbees.org.apache.velocity.app.VelocityEngine;
-import arcbees.org.apache.velocity.exception.ParseErrorException;
-import arcbees.org.apache.velocity.exception.ResourceNotFoundException;
-import arcbees.org.apache.velocity.runtime.resource.loader.URLResourceLoader;
+import org.apache.velocity.Template;
+import org.apache.velocity.VelocityContext;
+import org.apache.velocity.app.VelocityEngine;
+import org.apache.velocity.exception.ParseErrorException;
+import org.apache.velocity.exception.ResourceNotFoundException;
 
 import com.arcbees.plugin.template.domain.place.CreatedNameTokens;
 import com.arcbees.plugin.template.domain.place.NameToken;
 import com.arcbees.plugin.template.domain.place.NameTokenOptions;
 import com.arcbees.plugin.template.domain.presenter.RenderedTemplate;
+import com.arcbees.plugin.template.utils.VelocityUtils;
+import com.arcbees.plugin.velocity.VelocityEngineCustom;
 
 public class CreateNameTokens {
     public final static Logger logger = Logger.getLogger(CreateNameTokens.class.getName());
@@ -45,7 +46,7 @@ public class CreateNameTokens {
     private static final String BASE_REMOTE = "https://raw.github.com/ArcBees/IDE-Templates/1.0.0/src/main/resources/com/arcbees/plugin/template/place/";
     private final static String BASE_LOCAL = "./src/main/resources/com/arcbees/plugin/template/place/";
 
-    private VelocityEngine velocityEngine;
+    private VelocityEngineCustom velocityEngine;
     private NameTokenOptions nameTokenOptions;
     private CreatedNameTokens createdNameTokens;
     private boolean remote;
@@ -77,9 +78,10 @@ public class CreateNameTokens {
     }
 
     private void setupVelocityLocal() {
-        velocityEngine = new VelocityEngine();
+        velocityEngine = new VelocityEngineCustom();
         velocityEngine.setProperty(VelocityEngine.FILE_RESOURCE_LOADER_PATH, BASE_LOCAL);
         try {
+        	velocityEngine.reset();
             velocityEngine.init();
         } catch (Exception e) {
             logger.log(Level.SEVERE, "Velocity Init Error Local", e);
@@ -88,14 +90,13 @@ public class CreateNameTokens {
     }
 
     private void setupVelocityRemote() throws Exception {
-        URLResourceLoader loader = new URLResourceLoader();
-        velocityEngine = new VelocityEngine();
-        velocityEngine.setProperty("resource.loader", "url");
-        velocityEngine.setProperty("url.resource.loader.instance", loader);
-        velocityEngine.setProperty("url.resource.loader.timeout", new Integer(5000));
-        velocityEngine.setProperty("url.resource.loader.root", BASE_REMOTE);
-        velocityEngine.setProperty("runtime.log.logsystem.class", "arcbees.org.apache.velocity.runtime.log.AvalonLogChute");
-        velocityEngine.init();
+    	try {
+            velocityEngine = VelocityUtils.createRemoveVelocityEngine(BASE_REMOTE);
+        } catch (Exception e) {
+            logger.log(Level.SEVERE, "Velocity Init Error", e);
+            e.printStackTrace();
+            throw e;
+        }
     }
 
     private VelocityContext getBaseVelocityContext() {
