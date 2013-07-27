@@ -17,5 +17,64 @@
 package com.arcbees.plugin.template.domain.presenter;
 
 public class CreatedPopupPresenter {
+    private RenderedTemplate module;
+    private RenderedTemplate presenter;
+    private RenderedTemplate uihandlers;
+    private RenderedTemplate view;
+    private RenderedTemplate viewui;
 
+    public CreatedPopupPresenter() {
+    }
+
+    public RenderedTemplate getModule() {
+        return module;
+    }
+
+    public void setModule(RenderedTemplate module) {
+        this.module = module;
+    }
+
+    public RenderedTemplate getPresenter() {
+        return presenter;
+    }
+
+    public void setPresenter(RenderedTemplate presenter) {
+        this.presenter = presenter;
+    }
+
+    public RenderedTemplate getUihandlers() {
+        return uihandlers;
+    }
+
+    public void setUihandlers(RenderedTemplate uihandlers) {
+        this.uihandlers = uihandlers;
+    }
+
+    public RenderedTemplate getView() {
+        return view;
+    }
+
+    public void setView(RenderedTemplate view) {
+        this.view = view;
+    }
+
+    public RenderedTemplate getViewui() {
+        return viewui;
+    }
+
+    public void setViewui(RenderedTemplate viewui) {
+        this.viewui = viewui;
+    }
+
+    @Override
+    public String toString() {
+        String s = "{ CreatedPresenterWidget ";
+        s += "module=" + module + " ";
+        s += "presenter=" + presenter + " ";
+        s += "uihandlers=" + uihandlers + " ";
+        s += "view=" + view + " ";
+        s += "viewui=" + viewui + " ";
+        s += " }";
+        return s;
+    }
 }
