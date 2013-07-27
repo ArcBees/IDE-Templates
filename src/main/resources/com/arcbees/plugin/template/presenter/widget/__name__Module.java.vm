@@ -1,0 +1,16 @@
+#if ( $singleton )
+    #set( $binding = "bindSingletonPresenterWidget(${name}Presenter.class, ${name}Presenter.MyView.class, ${name}View.class);" )
+#else
+    #set( $binding = "bindPresenterWidget(${name}Presenter.class, ${name}Presenter.MyView.class, ${name}View.class);" )
+#end
+
+package ${package};
+
+import com.gwtplatform.mvp.client.gin.AbstractPresenterModule;
+
+public class ${name}Module extends AbstractPresenterModule {
+    @Override
+    protected void configure() {
+        ${binding};
+    }
+}
