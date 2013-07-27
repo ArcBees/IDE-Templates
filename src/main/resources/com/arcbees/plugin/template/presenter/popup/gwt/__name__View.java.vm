@@ -18,7 +18,7 @@ public class ${name}View extends $extends implements ${name}PresenterWidget.MyVi
     }
 
     @Inject
-    public ${name}View(Binder uiBinder, EventBus eventBus) {
+    ${name}View(Binder uiBinder, EventBus eventBus) {
         super(eventBus);
 
         initWidget(uiBinder.createAndBindUi(this));

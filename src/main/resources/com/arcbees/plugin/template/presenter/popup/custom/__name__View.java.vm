@@ -23,7 +23,7 @@ public class ${name}View extends $extends implements ${name}Presenter.MyView {
     PopupPanel popup;
 
     @Inject
-    public ${name}View(Binder binder, EventBus eventBus) {
+    ${name}View(Binder binder, EventBus eventBus) {
         initWidget(binder.createAndBindUi(this));
 
         popup.setPixelSize(500, 500);

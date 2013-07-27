@@ -21,7 +21,7 @@ public class ${name}View extends ${extends} implements ${name}Presenter.MyView {
     HTMLPanel panel;
 
     @Inject
-    public ${name}View(Binder binder) {
+    ${name}View(Binder binder) {
         initWidget(binder.createAndBindUi(this));
     }
 }

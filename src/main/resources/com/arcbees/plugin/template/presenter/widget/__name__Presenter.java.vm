@@ -19,7 +19,7 @@ public class ${name}Presenter extends PresenterWidget<${name}Presenter.MyView> $
     }
 
     @Inject
-    public ${name}Presenter(EventBus eventBus, MyView view) {
+    ${name}Presenter(EventBus eventBus, MyView view) {
         super(eventBus, view);
 
         #if( $uihandlers ) 
