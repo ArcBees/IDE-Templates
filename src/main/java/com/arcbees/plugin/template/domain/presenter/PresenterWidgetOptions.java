@@ -17,5 +17,16 @@
 package com.arcbees.plugin.template.domain.presenter;
 
 public class PresenterWidgetOptions {
+    private boolean singleton;
+    
+    public PresenterWidgetOptions() {
+    }
 
+    public boolean getSingleton() {
+        return singleton;
+    }
+
+    public void setSingleton(boolean singleton) {
+        this.singleton = singleton;
+    }
 }
