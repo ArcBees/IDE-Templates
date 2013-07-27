@@ -15,18 +15,18 @@ import com.gwtplatform.mvp.client.PresenterWidget;
 import com.gwtplatform.mvp.client.View;
 
 public class ${name}Presenter extends PresenterWidget<${name}Presenter.MyView> ${implements} {
-	public interface MyView extends View ${extendsView} {
-	}
+    public interface MyView extends View ${extendsView} {
+    }
 
-	@Inject
-	public ${name}Presenter(EventBus eventBus, MyView view) {
-		super(eventBus, view);
+    @Inject
+    public ${name}Presenter(EventBus eventBus, MyView view) {
+        super(eventBus, view);
 
-		#if( $uihandlers ) 
-	    getView().setUiHandlers(this);
-	    #end
-	}
-	
+        #if( $uihandlers ) 
+        getView().setUiHandlers(this);
+        #end
+    }
+    
     #if( $onbind )
     protected void onBind() {
         super.onBind();
