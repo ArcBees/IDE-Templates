@@ -17,5 +17,25 @@
 package com.arcbees.plugin.template.domain.presenter;
 
 public class PopupPresenterOptions {
+    private boolean singleton;
+    private boolean custom;
+    
+    public PopupPresenterOptions() {
+    }
 
+    public boolean getSingleton() {
+        return singleton;
+    }
+
+    public void setSingleton(boolean singleton) {
+        this.singleton = singleton;
+    }
+
+    public boolean getCustom() {
+        return custom;
+    }
+
+    public void setCustom(boolean custom) {
+        this.custom = custom;
+    }
 }
