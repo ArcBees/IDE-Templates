@@ -1,0 +1,72 @@
+#if ( $uihandlers )
+    #set( $implements = "implements ${name}UiHandlers" )
+    #set( $extendsView = ", HasUiHandlers<${name}UiHandlers>" )
+#else
+    #set( $implements = "" )
+    #set( $extendsView = "" )
+#end
+
+package ${package};
+
+import com.google.gwt.user.client.ui.Widget;
+import com.google.inject.Inject;
+import com.google.web.bindery.event.shared.EventBus;
+import com.gwtplatform.mvp.client.HasUiHandlers;
+import com.gwtplatform.mvp.client.PresenterWidget;
+import com.gwtplatform.mvp.client.View;
+
+public class ${name}Presenter extends PresenterWidget<${name}Presenter.MyView> $implements {
+    public interface MyView extends View ${extendsView} {
+        void center();
+
+        void hide();
+
+        void showRelativeTo(Widget target);
+    }
+
+    @Inject
+    ${name}Presenter(EventBus eventBus, MyView view) {
+        super(eventBus, view);
+
+        #if( $uihandlers ) 
+        getView().setUiHandlers(this);
+        #end
+    }
+
+    #if( $onbind )
+    protected void onBind() {
+        super.onBind();
+    }
+    #end
+    
+    #if( $onreveal )
+    protected void onReveal() {
+        super.onReveal();
+    }
+    #end
+    
+    #if( $onhide )
+    protected void onHide() {
+        super.onHide();
+    }
+    #end
+    
+    #if( $onunbind )
+    protected void onUnbind() {
+        super.onUnbind();
+    }
+    #end
+    
+    #if( $onreset )
+    protected void onReset() {
+        super.onReset();
+    }
+    #end
+    
+    #if( $manualreveal )
+    @Override
+    public boolean useManualReveal() {
+        return true;
+    }
+    #end
+}

@@ -1,0 +1,27 @@
+#if( $uihandlers )
+    #set( $extends = "ViewWithUiHandlers<${name}UiHandlers>" )
+#else 
+    #set( $extends = "ViewImpl" )
+#end
+
+package ${package};
+
+import com.google.gwt.uibinder.client.UiBinder;
+import com.google.gwt.uibinder.client.UiField;
+import com.google.gwt.user.client.ui.HTMLPanel;
+import com.google.inject.Inject;
+import com.gwtplatform.mvp.client.ViewImpl;
+import com.gwtplatform.mvp.client.ViewWithUiHandlers;
+
+public class ${name}View extends ${extends} implements ${name}Presenter.MyView {
+    public interface Binder extends UiBinder<HTMLPanel, ${name}View> {
+    }
+
+    @UiField
+    HTMLPanel panel;
+
+    @Inject
+    ${name}View(Binder binder) {
+        initWidget(binder.createAndBindUi(this));
+    }
+}
