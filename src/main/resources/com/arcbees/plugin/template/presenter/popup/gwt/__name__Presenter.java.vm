@@ -13,7 +13,7 @@ import com.google.web.bindery.event.shared.EventBus;
 import com.gwtplatform.mvp.client.PopupView;
 import com.gwtplatform.mvp.client.PresenterWidget;
 
-public class ${name}PresenterWidget extends PresenterWidget<${name}PresenterWidget.MyView> ${implements} {
+public class ${name}Presenter extends PresenterWidget<${name}PresenterWidget.MyView> ${implements} {
     public interface MyView extends PopupView ${extendsView} {
     }
 
