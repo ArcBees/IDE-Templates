@@ -22,10 +22,10 @@
 
 #if ( $isplace ) 
 	#set( $nametokenrendered = "@NameToken(${nametoken})" )
-	#set( $proxy = "ProxyPlace" )
+	#set( $proxyExtends = "ProxyPlace" )
 #else 
 	#set( $nametokenrendered = "" )
-	#set( $proxy = "Proxy" )
+	#set( $proxyExtends = "Proxy" )
 #end
 
 package ${package};
@@ -38,6 +38,7 @@ import com.gwtplatform.mvp.client.View;
 import com.gwtplatform.mvp.client.annotations.ContentSlot;
 import com.gwtplatform.mvp.client.annotations.ProxyStandard;
 import com.gwtplatform.mvp.client.proxy.Proxy;
+import com.gwtplatform.mvp.client.proxy.ProxyPlace;
 import com.gwtplatform.mvp.client.proxy.RevealContentHandler;
 import com.gwtplatform.mvp.client.HasUiHandlers;
 import com.gwtplatform.mvp.client.proxy.PlaceRequest;
@@ -55,7 +56,7 @@ public class ${name}Presenter extends Presenter<${name}Presenter.MyView, ${name}
 
 	${nametokenrendered}
     ${proxy}
-    public interface MyProxy extends ${proxy}<${name}Presenter> {
+    public interface MyProxy extends ${proxyExtends}<${name}Presenter> {
     }
 
     @Inject
