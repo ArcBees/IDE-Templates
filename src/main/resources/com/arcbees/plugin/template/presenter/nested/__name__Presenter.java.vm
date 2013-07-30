@@ -22,8 +22,10 @@
 
 #if ( $isplace ) 
 	#set( $nametokenrendered = "@NameToken(${nametoken})" )
+	#set( $proxy = "ProxyPlace" )
 #else 
 	#set( $nametokenrendered = "" )
+	#set( $proxy = "Proxy" )
 #end
 
 package ${package};
@@ -53,7 +55,7 @@ public class ${name}Presenter extends Presenter<${name}Presenter.MyView, ${name}
 
 	${nametokenrendered}
     ${proxy}
-    public interface MyProxy extends Proxy<${name}Presenter> {
+    public interface MyProxy extends ${proxy}<${name}Presenter> {
     }
 
     @Inject
