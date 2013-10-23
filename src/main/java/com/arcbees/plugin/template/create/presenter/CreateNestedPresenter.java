@@ -22,7 +22,6 @@ import java.util.logging.Logger;
 
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
-import org.apache.velocity.app.Velocity;
 import org.apache.velocity.app.VelocityEngine;
 import org.apache.velocity.exception.ParseErrorException;
 import org.apache.velocity.exception.ResourceNotFoundException;
@@ -32,7 +31,6 @@ import com.arcbees.plugin.template.domain.presenter.NestedPresenterOptions;
 import com.arcbees.plugin.template.domain.presenter.PresenterOptions;
 import com.arcbees.plugin.template.domain.presenter.RenderedTemplate;
 import com.arcbees.plugin.template.utils.VelocityUtils;
-import com.arcbees.plugin.velocity.VelocityEngineCustom;
 
 public class CreateNestedPresenter {
     public final static Logger logger = Logger.getLogger(CreateNestedPresenter.class.getName());
@@ -51,7 +49,7 @@ public class CreateNestedPresenter {
     private final PresenterOptions presenterOptions;
     private final NestedPresenterOptions nestedPresenterOptions;
 
-    private VelocityEngineCustom velocityEngine;
+    private VelocityEngine velocityEngine;
     private CreatedNestedPresenter createdNestedPresenter;
     private boolean remote;
 
@@ -75,10 +73,10 @@ public class CreateNestedPresenter {
     }
 
     private void setupVelocityLocal() {
-        velocityEngine = new VelocityEngineCustom();
+        velocityEngine = new VelocityEngine();
         velocityEngine.setProperty(VelocityEngine.FILE_RESOURCE_LOADER_PATH, BASE_LOCAL);
         try {
-        	velocityEngine.reset();
+        	//velocityEngine.reset();
             velocityEngine.init();
         } catch (Exception e) {
             logger.log(Level.SEVERE, "Velocity Init Error Local", e);
