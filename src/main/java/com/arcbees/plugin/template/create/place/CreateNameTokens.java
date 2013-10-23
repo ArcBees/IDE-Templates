@@ -32,7 +32,6 @@ import com.arcbees.plugin.template.domain.place.NameToken;
 import com.arcbees.plugin.template.domain.place.NameTokenOptions;
 import com.arcbees.plugin.template.domain.presenter.RenderedTemplate;
 import com.arcbees.plugin.template.utils.VelocityUtils;
-import com.arcbees.plugin.velocity.VelocityEngineCustom;
 
 public class CreateNameTokens {
     public final static Logger logger = Logger.getLogger(CreateNameTokens.class.getName());
@@ -46,7 +45,7 @@ public class CreateNameTokens {
     private static final String BASE_REMOTE = "https://raw.github.com/ArcBees/IDE-Templates/1.0.0/src/main/resources/com/arcbees/plugin/template/place/";
     private final static String BASE_LOCAL = "./src/main/resources/com/arcbees/plugin/template/place/";
 
-    private VelocityEngineCustom velocityEngine;
+    private VelocityEngine velocityEngine;
     private NameTokenOptions nameTokenOptions;
     private CreatedNameTokens createdNameTokens;
     private boolean remote;
@@ -78,10 +77,9 @@ public class CreateNameTokens {
     }
 
     private void setupVelocityLocal() {
-        velocityEngine = new VelocityEngineCustom();
+        velocityEngine = new VelocityEngine();
         velocityEngine.setProperty(VelocityEngine.FILE_RESOURCE_LOADER_PATH, BASE_LOCAL);
         try {
-        	velocityEngine.reset();
             velocityEngine.init();
         } catch (Exception e) {
             logger.log(Level.SEVERE, "Velocity Init Error Local", e);

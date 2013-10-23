@@ -18,15 +18,14 @@ package com.arcbees.plugin.template.utils;
 
 import java.util.Properties;
 
+import org.apache.velocity.app.VelocityEngine;
 import org.apache.velocity.runtime.RuntimeConstants;
 import org.apache.velocity.runtime.resource.ResourceCacheImpl;
 import org.apache.velocity.runtime.resource.ResourceManagerImpl;
 import org.apache.velocity.runtime.resource.loader.URLResourceLoader;
 
-import com.arcbees.plugin.velocity.VelocityEngineCustom;
-
 public class VelocityUtils {
-	public static VelocityEngineCustom createRemoveVelocityEngine(String remoteBaseUrl) throws Exception {
+	public static VelocityEngine createRemoveVelocityEngine(String remoteBaseUrl) throws Exception {
 		Properties properties = new Properties();
 		properties.setProperty(RuntimeConstants.RESOURCE_LOADER, "url");
 		properties.setProperty("url.resource.loader.class", URLResourceLoader.class.getName());
@@ -35,10 +34,10 @@ public class VelocityUtils {
 		properties.setProperty(RuntimeConstants.RESOURCE_MANAGER_CLASS, ResourceManagerImpl.class.getName());
 		properties.setProperty(RuntimeConstants.RESOURCE_MANAGER_CACHE_CLASS, ResourceCacheImpl.class.getName());
 		
-		VelocityEngineCustom velocityEngine;
+		VelocityEngine velocityEngine;
 		try {			
-			velocityEngine = new VelocityEngineCustom();
-			velocityEngine.reset();
+			velocityEngine = new VelocityEngine();
+			//velocityEngine.reset();
 			velocityEngine.init(properties);
 		} catch (Exception e) {
 			throw e;
