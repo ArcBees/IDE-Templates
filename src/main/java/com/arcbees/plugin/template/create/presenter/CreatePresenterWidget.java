@@ -31,7 +31,6 @@ import com.arcbees.plugin.template.domain.presenter.PresenterOptions;
 import com.arcbees.plugin.template.domain.presenter.PresenterWidgetOptions;
 import com.arcbees.plugin.template.domain.presenter.RenderedTemplate;
 import com.arcbees.plugin.template.utils.VelocityUtils;
-import com.arcbees.plugin.velocity.VelocityEngineCustom;
 
 public class CreatePresenterWidget {
     public final static Logger logger = Logger.getLogger(CreatePresenterWidget.class.getName());
@@ -50,7 +49,7 @@ public class CreatePresenterWidget {
     private final PresenterOptions presenterOptions;
     private PresenterWidgetOptions presenterWidgetOptions;
 
-    private VelocityEngineCustom velocityEngine;
+    private VelocityEngine velocityEngine;
     private CreatedPresenterWidget createdPresenterWidget;
     private boolean remote;
 
@@ -74,10 +73,9 @@ public class CreatePresenterWidget {
     }
 
     private void setupVelocityLocal() {
-        velocityEngine = new VelocityEngineCustom();
+        velocityEngine = new VelocityEngine();
         velocityEngine.setProperty(VelocityEngine.FILE_RESOURCE_LOADER_PATH, BASE_LOCAL);
         try {
-            velocityEngine.reset();
             velocityEngine.init();
         } catch (Exception e) {
             logger.log(Level.SEVERE, "Velocity Init Error Local", e);
