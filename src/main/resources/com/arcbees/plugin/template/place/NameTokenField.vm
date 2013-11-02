@@ -1,4 +1,4 @@
-#if( $crawler ) 
+#if( $crawlable ) 
     #set( $crawlerEx = "!" )
 #else
     #set( $crawlerEx = "" )
