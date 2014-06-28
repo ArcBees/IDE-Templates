@@ -18,5 +18,3 @@ Export this project as a jar. In the future Maven can do this.
 2. Either run eclipse export, or load the eclipse export jardesc.
 3. The jar exports into target/build/ide-templates.jar.
 4. Copy the jar into the Eclipse plugin lib directory. 
- 
-[![githalytics.com alpha](https://cruel-carlota.gopagoda.com/73e4b209b006452944fd72f4f58e438b "githalytics.com")](http://githalytics.com/ArcBees/IDE-Templates)
