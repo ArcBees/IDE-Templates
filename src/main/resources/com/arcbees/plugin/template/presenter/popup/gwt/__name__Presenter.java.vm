@@ -27,6 +27,13 @@ public class ${name}Presenter extends PresenterWidget<${name}Presenter.MyView> $
         #end
     }
     
+    #if( $manualreveal )
+    @Override
+    public boolean useManualReveal() {
+        return true;
+    }
+    #end
+    
     #if( $onbind )
     protected void onBind() {
         super.onBind();
@@ -54,13 +61,6 @@ public class ${name}Presenter extends PresenterWidget<${name}Presenter.MyView> $
     #if( $onreset )
     protected void onReset() {
         super.onReset();
-    }
-    #end
-    
-    #if( $manualreveal )
-    @Override
-    public boolean useManualReveal() {
-        return true;
     }
     #end
 }
