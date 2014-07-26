@@ -15,8 +15,8 @@ import com.google.web.bindery.event.shared.EventBus;
 import com.gwtplatform.mvp.client.ViewWithUiHandlers;
 import com.gwtplatform.mvp.client.ViewImpl;
 
-public class ${name}View extends $extends implements ${name}Presenter.MyView {
-    public interface Binder extends UiBinder<Widget, ${name}View> {
+class ${name}View extends $extends implements ${name}Presenter.MyView {
+    interface Binder extends UiBinder<Widget, ${name}View> {
     }
 
     @UiField

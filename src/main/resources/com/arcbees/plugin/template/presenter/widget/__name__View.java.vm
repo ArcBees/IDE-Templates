@@ -14,7 +14,7 @@ import com.google.inject.Inject;
 import com.gwtplatform.mvp.client.ViewImpl;
 import com.gwtplatform.mvp.client.ViewWithUiHandlers;
 
-public class ${name}View extends ${extends} implements ${name}Presenter.MyView {
+class ${name}View extends ${extends} implements ${name}Presenter.MyView {
     interface Binder extends UiBinder<Widget, ${name}View> {
     }
 
