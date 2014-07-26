@@ -1,31 +1,31 @@
 #if ( $revealType == "Root")
-	#set( $revealType = "RevealType.Root" )
+    #set( $revealType = "RevealType.Root" )
 #elseif( $revealType == "RootLayout" )
-	#set( $revealType = "RevealType.RootLayout" )
+    #set( $revealType = "RevealType.RootLayout" )
 #elseif ( $revealType == "RootPopup" )
-	#set( $revealType = "RevealType.RootPopup" )
+    #set( $revealType = "RevealType.RootPopup" )
 #end
 
 #if ( $uihandlers )
-	#set( $implements = "implements ${name}UiHandlers" )
-	#set( $extendsView = ", HasUiHandlers<${name}UiHandlers>" )
+    #set( $implements = "implements ${name}UiHandlers" )
+    #set( $extendsView = ", HasUiHandlers<${name}UiHandlers>" )
 #else
-	#set( $implements = "" )
-	#set( $extendsView = "" )
+    #set( $implements = "" )
+    #set( $extendsView = "" )
 #end
 
 #if ( $codesplit )
-	#set( $proxy = "@ProxyCodeSplit" )
+    #set( $proxy = "@ProxyCodeSplit" )
 #else
-	#set( $proxy = "@ProxyStandard" )
+    #set( $proxy = "@ProxyStandard" )
 #end
 
 #if ( $isplace ) 
-	#set( $nametokenrendered = "@NameToken(${nametoken})" )
-	#set( $proxyExtends = "ProxyPlace" )
+    #set( $nametokenrendered = "@NameToken(${nametoken})" )
+    #set( $proxyExtends = "ProxyPlace" )
 #else 
-	#set( $nametokenrendered = "" )
-	#set( $proxyExtends = "Proxy" )
+    #set( $nametokenrendered = "" )
+    #set( $proxyExtends = "Proxy" )
 #end
 
 package ${package};
@@ -54,64 +54,64 @@ public class ${name}Presenter extends Presenter<${name}Presenter.MyView, ${name}
     @ContentSlot
     public static final Type<RevealContentHandler<?>> SLOT_${name} = new Type<RevealContentHandler<?>>();
 
-	${nametokenrendered}
+    ${nametokenrendered}
     ${proxy}
-    public interface MyProxy extends ${proxyExtends}<${name}Presenter> {
+    interface MyProxy extends ${proxyExtends}<${name}Presenter> {
     }
 
     @Inject
-    public ${name}Presenter(
-    		EventBus eventBus, 
-    		MyView view, 
-    		MyProxy proxy) {
+    ${name}Presenter(
+            EventBus eventBus, 
+            MyView view, 
+            MyProxy proxy) {
         super(eventBus, view, proxy, ${revealType});
         
         #if( $uihandlers ) 
         getView().setUiHandlers(this);
         #end
     }
-	
-	#if( $onbind )
-	protected void onBind() {
-		super.onBind();
-	}
-	#end
-	
-	#if( $onreveal )
-	protected void onReveal() {
-		super.onReveal();
-	}
-	#end
-	
-	#if( $onhide )
-	protected void onHide() {
-		super.onHide();
-	}
-	#end
-	
-	#if( $onunbind )
-	protected void onUnbind() {
-		super.onUnbind();
-	}
-	#end
-	
-	#if( $onreset )
-	protected void onReset() {
-		super.onReset();
-	}
-	#end
-	
-	#if( $manualreveal )
-	@Override
-	public boolean useManualReveal() {
-		return true;
-	}
-	#end
-	
-	#if ( $preparefromrequest )
-	@Override
-	public void prepareFromRequest(PlaceRequest request) {
-		super.prepareFromRequest(request);
-	}
-	#end	
+    
+    #if( $onbind )
+    protected void onBind() {
+        super.onBind();
+    }
+    #end
+    
+    #if( $onreveal )
+    protected void onReveal() {
+        super.onReveal();
+    }
+    #end
+    
+    #if( $onhide )
+    protected void onHide() {
+        super.onHide();
+    }
+    #end
+    
+    #if( $onunbind )
+    protected void onUnbind() {
+        super.onUnbind();
+    }
+    #end
+    
+    #if( $onreset )
+    protected void onReset() {
+        super.onReset();
+    }
+    #end
+    
+    #if( $manualreveal )
+    @Override
+    public boolean useManualReveal() {
+        return true;
+    }
+    #end
+    
+    #if ( $preparefromrequest )
+    @Override
+    public void prepareFromRequest(PlaceRequest request) {
+        super.prepareFromRequest(request);
+    }
+    #end	
 }

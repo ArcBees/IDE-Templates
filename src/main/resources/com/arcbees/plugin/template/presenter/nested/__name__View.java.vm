@@ -16,7 +16,7 @@ import com.gwtplatform.mvp.client.ViewWithUiHandlers;
 	#set( $extends = "ViewImpl" )
 #end
 
-public class ${name}View extends $extends implements ${name}Presenter.MyView {
+class ${name}View extends $extends implements ${name}Presenter.MyView {
     interface Binder extends UiBinder<Widget, ${name}View> {
     }
 
