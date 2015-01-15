@@ -29,8 +29,8 @@ import com.arcbees.plugin.template.util.FetchProperties;
 import com.jayway.restassured.RestAssured;
 
 public class PresenterRemoteTest {
-    private String propertiesUrlPath = "https://raw.github.com/ArcBees/IDE-Templates/1.0.0/" +
-    		"src/main/resources/com/arcbees/plugin/template/presenter/template.properties";
+    private String propertiesUrlPath = "https://raw.githubusercontent.com/ArcBees/IDE-Templates/1.2.0/" +
+    		"src/main/resources/com/arcbees/plugin/template/presenter/nested/template.properties";
 
     @Test
     public void testRemoteGet() {

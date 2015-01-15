@@ -25,24 +25,23 @@ import org.apache.velocity.runtime.resource.ResourceManagerImpl;
 import org.apache.velocity.runtime.resource.loader.URLResourceLoader;
 
 public class VelocityUtils {
-	public static VelocityEngine createRemoveVelocityEngine(String remoteBaseUrl) throws Exception {
-		Properties properties = new Properties();
-		properties.setProperty(RuntimeConstants.RESOURCE_LOADER, "url");
-		properties.setProperty("url.resource.loader.class", URLResourceLoader.class.getName());
-		properties.setProperty("url.resource.loader.timeout", "5000");
-		properties.setProperty("url.resource.loader.root", remoteBaseUrl);
-		properties.setProperty(RuntimeConstants.RESOURCE_MANAGER_CLASS, ResourceManagerImpl.class.getName());
-		properties.setProperty(RuntimeConstants.RESOURCE_MANAGER_CACHE_CLASS, ResourceCacheImpl.class.getName());
-		
-		VelocityEngine velocityEngine;
-		try {			
-			velocityEngine = new VelocityEngine();
-			//velocityEngine.reset();
-			velocityEngine.init(properties);
-		} catch (Exception e) {
-			throw e;
-		}
-        
+    public static VelocityEngine createRemoveVelocityEngine(String remoteBaseUrl) throws Exception {
+        Properties properties = new Properties();
+        properties.setProperty(RuntimeConstants.RESOURCE_LOADER, "url");
+        properties.setProperty("url.resource.loader.class", URLResourceLoader.class.getName());
+        properties.setProperty("url.resource.loader.timeout", "5000");
+        properties.setProperty("url.resource.loader.root", remoteBaseUrl);
+        properties.setProperty(RuntimeConstants.RESOURCE_MANAGER_CLASS, ResourceManagerImpl.class.getName());
+        properties.setProperty(RuntimeConstants.RESOURCE_MANAGER_CACHE_CLASS, ResourceCacheImpl.class.getName());
+
+        VelocityEngine velocityEngine;
+        try {
+            velocityEngine = new VelocityEngine();
+            velocityEngine.init(properties);
+        } catch (Exception e) {
+            throw e;
+        }
+
         return velocityEngine;
-	}
+    }
 }
