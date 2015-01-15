@@ -56,7 +56,6 @@
         <!-- project -->
         <target.jdk>1.6</target.jdk>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <repackage>com.arcbees.repackaged</repackage>
 
         <!-- libs -->
         <velocity.version>1.7</velocity.version>
@@ -68,7 +67,6 @@
         <!-- maven -->
         <maven-compiler-plugin.version>2.3.2</maven-compiler-plugin.version>
         <org.apache.commons.collections.version>3.2.1</org.apache.commons.collections.version>
-        <maven-shade-plugin.version>2.3</maven-shade-plugin.version>
     </properties>
 
     <build>
@@ -107,25 +105,21 @@
             <groupId>com.jayway.restassured</groupId>
             <artifactId>rest-assured</artifactId>
             <version>${restassured.version}</version>
-            <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>commons-configuration</groupId>
             <artifactId>commons-configuration</artifactId>
             <version>${commons.version}</version>
-            <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
             <version>${commons-io.version}</version>
-            <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>org.apache.directory.studio</groupId>
             <artifactId>org.apache.commons.collections</artifactId>
             <version>${org.apache.commons.collections.version}</version>
-            <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
