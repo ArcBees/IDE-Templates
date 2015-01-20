@@ -44,8 +44,8 @@ public class CreatePopupPresenter {
     }
 
     // TODO should be more
-    private static final String BASE_REMOTE_GWT = "https://raw.github.com/ArcBees/IDE-Templates/1.0.0/src/main/resources/com/arcbees/plugin/template/presenter/popup/gwt/";
-    private static final String BASE_REMOTE_CUSTOM = "https://raw.github.com/ArcBees/IDE-Templates/1.0.0/src/main/resources/com/arcbees/plugin/template/presenter/popup/custom/";
+    private static final String BASE_REMOTE_GWT = "https://raw.githubusercontent.com/ArcBees/IDE-Templates/1.2.0/src/main/resources/com/arcbees/plugin/template/presenter/popup/gwt/";
+    private static final String BASE_REMOTE_CUSTOM = "https://raw.githubusercontent.com/ArcBees/IDE-Templates/1.2.0/src/main/resources/com/arcbees/plugin/template/presenter/popup/custom/";
     private final static String BASE_LOCAL_GWT = "./src/main/resources/com/arcbees/plugin/template/presenter/popup/gwt/";
     private final static String BASE_LOCAL_CUSTOM = "./src/main/resources/com/arcbees/plugin/template/presenter/popup/custom/";
 

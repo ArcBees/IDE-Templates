@@ -43,7 +43,7 @@ public class CreateNestedPresenter {
         return createNestedPresenter.getCreatedNestedPresenter();
     }
 
-    private static final String BASE_REMOTE = "https://raw.github.com/ArcBees/IDE-Templates/1.0.0/src/main/resources/com/arcbees/plugin/template/presenter/nested/";
+    private static final String BASE_REMOTE = "https://raw.githubusercontent.com/ArcBees/IDE-Templates/1.2.0/src/main/resources/com/arcbees/plugin/template/presenter/nested/";
     private final static String BASE_LOCAL = "./src/main/resources/com/arcbees/plugin/template/presenter/nested/";
 
     private final PresenterOptions presenterOptions;

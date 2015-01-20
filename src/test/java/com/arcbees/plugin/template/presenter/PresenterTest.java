@@ -33,13 +33,13 @@ public class PresenterTest {
     public void testSetup() throws Exception {
         velocityEngine = new VelocityEngine();
         velocityEngine.setProperty(VelocityEngine.FILE_RESOURCE_LOADER_PATH,
-                "./src/main/resources/com/arcbees/plugin/template/presenter/");
+                "./src/main/resources/com/arcbees/plugin/template/presenter/nested/");
         velocityEngine.init();
     }
 
     @Test
     public void testModule() throws ResourceNotFoundException, ParseErrorException, Exception {
-        Template t = velocityEngine.getTemplate("__name__Module.java");
+    Template t = velocityEngine.getTemplate("__name__Module.java.vm");
 
         VelocityContext context = new VelocityContext();
         context.put("package", "com.arcbees.project.client.application");
@@ -54,7 +54,7 @@ public class PresenterTest {
 
     @Test
     public void testPresenter() throws ResourceNotFoundException, ParseErrorException, Exception {
-        Template t = velocityEngine.getTemplate("__name__Presenter.java");
+        Template t = velocityEngine.getTemplate("__name__Presenter.java.vm");
 
         VelocityContext context = new VelocityContext();
         context.put("package", "com.arcbees.project.client.application");
@@ -70,7 +70,7 @@ public class PresenterTest {
 
     @Test
     public void testPresenterWithUiHandlers() throws ResourceNotFoundException, ParseErrorException, Exception {
-        Template t = velocityEngine.getTemplate("__name__Presenter.java");
+        Template t = velocityEngine.getTemplate("__name__Presenter.java.vm");
 
         VelocityContext context = new VelocityContext();
         context.put("package", "com.arcbees.project.client.application");
@@ -86,7 +86,7 @@ public class PresenterTest {
 
     @Test
     public void testUiHandlers() throws ResourceNotFoundException, ParseErrorException, Exception {
-        Template t = velocityEngine.getTemplate("__name__UiHandlers.java");
+        Template t = velocityEngine.getTemplate("__name__UiHandlers.java.vm");
 
         VelocityContext context = new VelocityContext();
         context.put("package", "com.arcbees.project.client.application");
@@ -102,7 +102,7 @@ public class PresenterTest {
 
     @Test
     public void testView() throws ResourceNotFoundException, ParseErrorException, Exception {
-        Template t = velocityEngine.getTemplate("__name__View.java");
+        Template t = velocityEngine.getTemplate("__name__View.java.vm");
 
         VelocityContext context = new VelocityContext();
         context.put("name", "ApplicationTest");
@@ -117,7 +117,7 @@ public class PresenterTest {
 
     @Test
     public void testViewWithUiHandlers() throws ResourceNotFoundException, ParseErrorException, Exception {
-        Template t = velocityEngine.getTemplate("__name__View.java");
+        Template t = velocityEngine.getTemplate("__name__View.java.vm");
 
         VelocityContext context = new VelocityContext();
         context.put("name", "ApplicationTest");
@@ -132,7 +132,7 @@ public class PresenterTest {
 
     @Test
     public void testViewUi() throws ResourceNotFoundException, ParseErrorException, Exception {
-        Template t = velocityEngine.getTemplate("__name__View.ui.xml");
+        Template t = velocityEngine.getTemplate("__name__View.ui.xml.vm");
 
         VelocityContext context = new VelocityContext();
         context.put("package", "com.arcbees.project.client.application");
