@@ -18,3 +18,10 @@ Export this project as a jar. In the future Maven can do this.
 2. Either run eclipse export, or load the eclipse export jardesc.
 3. The jar exports into target/build/ide-templates.jar.
 4. Copy the jar into the Eclipse plugin lib directory. 
+
+##Thanks to
+[![Arcbees.com](http://i.imgur.com/HDf1qfq.png)](http://arcbees.com)
+
+[![Atlassian](http://i.imgur.com/BKkj8Rg.png)](https://www.atlassian.com/)
+
+[![IntelliJ](https://lh6.googleusercontent.com/--QIIJfKrjSk/UJJ6X-UohII/AAAAAAAAAVM/cOW7EjnH778/s800/banner_IDEA.png)](http://www.jetbrains.com/idea/index.html)
