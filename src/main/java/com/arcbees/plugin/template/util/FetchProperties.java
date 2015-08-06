@@ -26,7 +26,7 @@ import org.apache.commons.configuration.PropertiesConfiguration;
 
 public class FetchProperties {
     public enum Config {
-        FILE, REQUIRED, TASKS, OPTIONAL;
+        FILE, TASKS, OPTIONAL;
         
         public String toString() {
             return name().toLowerCase();
@@ -97,7 +97,7 @@ public class FetchProperties {
         String key = config.toString();
         List<Object> objects = configuration.getList(key);
         
-        List<String> strings = new ArrayList<String>();
+        List<String> strings = new ArrayList<>();
         for (Object object : objects) {
             if (object != null) {
                 strings.add(object.toString());

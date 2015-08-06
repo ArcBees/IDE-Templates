@@ -52,7 +52,7 @@ public class ${name}Presenter extends Presenter<${name}Presenter.MyView, ${name}
     }
 
     @ContentSlot
-    public static final Type<RevealContentHandler<?>> SLOT_${name} = new Type<RevealContentHandler<?>>();
+    public static final Type<RevealContentHandler<?>> SLOT_${name} = new Type<>();
 
 	${nametokenrendered}
     ${proxy}
@@ -60,7 +60,7 @@ public class ${name}Presenter extends Presenter<${name}Presenter.MyView, ${name}
     }
 
     @Inject
-    public ${name}Presenter(
+    ${name}Presenter(
     		EventBus eventBus, 
     		MyView view, 
     		MyProxy proxy) {

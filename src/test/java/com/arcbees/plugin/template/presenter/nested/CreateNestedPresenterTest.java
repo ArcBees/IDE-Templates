@@ -104,13 +104,11 @@ public class CreateNestedPresenterTest {
         
         NestedPresenterOptions nestedPresenterOptions = new NestedPresenterOptions();
         nestedPresenterOptions.setCodeSplit(true);
-        
-        CreatedNestedPresenter created;
+
 		try {
-			created = CreateNestedPresenter.run(presenterOptions, nestedPresenterOptions, true);
+			CreateNestedPresenter.run(presenterOptions, nestedPresenterOptions, true);
 		} catch (Exception e) {
 			fail();
-			return;
 		}
 	}
 
@@ -121,10 +119,9 @@ public class CreateNestedPresenterTest {
         
         NestedPresenterOptions nestedPresenterOptions = new NestedPresenterOptions();
         nestedPresenterOptions.setCodeSplit(true);
-        
-        CreatedNestedPresenter created;
+
 		try {
-			created = CreateNestedPresenter.run(presenterOptions, nestedPresenterOptions, false);
+			CreateNestedPresenter.run(presenterOptions, nestedPresenterOptions, false);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -132,31 +129,4 @@ public class CreateNestedPresenterTest {
 			return;
 		}
 	}
-    
-//    private void generate() {
-//        // project settings
-//        String groupId = projectConfigModel.getGroupId();
-//        String artifactId = projectConfigModel.getArtifactId();
-//        String version = projectConfigModel.getVersion();
-//        String javaPackage = projectConfigModel.getPackageName();
-//        
-//        // config
-//        Properties properties = new Properties();
-//
-//        // TODO need to get from directory and add to directory the required properties.
-//        properties.put("module", projectConfigModel.getModuleName());
-//        archetype.setProperties(properties);
-//        // TODO 
-//        
-//        ProjectImportConfiguration configuration = new ProjectImportConfiguration();
-//
-//        IProjectConfigurationManager projectConfig = MavenPlugin.getProjectConfigurationManager();
-//        try {
-//            projectConfig.createArchetypeProjects(location, archetype, groupId, artifactId, version, javaPackage,
-//                    properties, configuration, monitor);
-//        } catch (CoreException e) {
-//            // TODO display error
-//            e.printStackTrace();
-//        }
-//    }
 }

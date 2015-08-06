@@ -47,7 +47,6 @@ public class FetchTemplate implements Runnable {
     }
 
     public String getFileName() {
-        String fileName = file.replaceAll(".*/", "");
-        return fileName;
+        return file.replaceAll(".*/", "");
     }
 }
