@@ -107,12 +107,7 @@ public class CreateNestedPresenter {
 
         // extra options
         context.put("uihandlers", presenterOptions.getUihandlers());
-        context.put("onbind", presenterOptions.getOnbind());
-        context.put("onhide", presenterOptions.getOnhide());
-        context.put("onreset", presenterOptions.getOnreset());
-        context.put("onunbind", presenterOptions.getOnunbind());
         context.put("manualreveal", presenterOptions.getManualReveal());
-        context.put("preparefromrequest", presenterOptions.getPrepareFromRequest());
 
         // nested presenter options
         context.put("revealType", nestedPresenterOptions.getRevealType());

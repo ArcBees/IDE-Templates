@@ -22,13 +22,8 @@ public class PresenterOptions {
     private String packageName;
     
     private boolean uihandlers;
-    private boolean onbind;
-    private boolean onhide;
-    private boolean onreset;
-    private boolean onunbind;
     private boolean manualreveal;
     private boolean manualReveal;
-    private boolean prepareFromRequest;
     
     private String gatekeeper;
 
@@ -59,38 +54,6 @@ public class PresenterOptions {
         this.uihandlers = uihandlers;
     }
 
-    public boolean getOnbind() {
-        return onbind;
-    }
-
-    public void setOnbind(boolean onbind) {
-        this.onbind = onbind;
-    }
-
-    public boolean getOnhide() {
-        return onhide;
-    }
-
-    public void setOnhide(boolean onhide) {
-        this.onhide = onhide;
-    }
-
-    public boolean getOnreset() {
-        return onreset;
-    }
-
-    public void setOnreset(boolean onreset) {
-        this.onreset = onreset;
-    }
-
-    public boolean getOnunbind() {
-        return onunbind;
-    }
-
-    public void setOnunbind(boolean onunbind) {
-        this.onunbind = onunbind;
-    }
-
     public boolean getManualreveal() {
         return manualreveal;
     }
@@ -113,14 +76,6 @@ public class PresenterOptions {
 
     public void setManualReveal(boolean manualReveal) {
         this.manualReveal = manualReveal;
-    }
-
-    public boolean getPrepareFromRequest() {
-        return prepareFromRequest;
-    }
-
-    public void setPrepareFromRequest(boolean prepareFromRequest) {
-        this.prepareFromRequest = prepareFromRequest;
     }
 
     public String getTmpPath() {

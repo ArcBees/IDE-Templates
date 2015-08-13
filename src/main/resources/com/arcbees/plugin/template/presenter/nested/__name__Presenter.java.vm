@@ -71,47 +71,10 @@ public class ${name}Presenter extends Presenter<${name}Presenter.MyView, ${name}
         #end
     }
 	
-	#if( $onbind )
-	protected void onBind() {
-		super.onBind();
-	}
-	#end
-	
-	#if( $onreveal )
-	protected void onReveal() {
-		super.onReveal();
-	}
-	#end
-	
-	#if( $onhide )
-	protected void onHide() {
-		super.onHide();
-	}
-	#end
-	
-	#if( $onunbind )
-	protected void onUnbind() {
-		super.onUnbind();
-	}
-	#end
-	
-	#if( $onreset )
-	protected void onReset() {
-		super.onReset();
-	}
-	#end
-	
 	#if( $manualreveal )
 	@Override
 	public boolean useManualReveal() {
 		return true;
 	}
 	#end
-	
-	#if ( $preparefromrequest )
-	@Override
-	public void prepareFromRequest(PlaceRequest request) {
-		super.prepareFromRequest(request);
-	}
-	#end	
 }
