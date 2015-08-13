@@ -51,8 +51,7 @@ public class ${name}Presenter extends Presenter<${name}Presenter.MyView, ${name}
     interface MyView extends View $extendsView {
     }
 
-    @ContentSlot
-    public static final Type<RevealContentHandler<?>> SLOT_${name} = new Type<RevealContentHandler<?>>();
+    public static final NestedSlot SLOT_${name.toUpperCase()} = new NestedSlot();
 
 	${nametokenrendered}
     ${proxy}
@@ -66,7 +65,7 @@ public class ${name}Presenter extends Presenter<${name}Presenter.MyView, ${name}
     		MyProxy proxy) {
         super(eventBus, view, proxy, ${revealType});
         
-        #if( $uihandlers ) 
+        #if( $uihandlers )
         getView().setUiHandlers(this);
         #end
     }

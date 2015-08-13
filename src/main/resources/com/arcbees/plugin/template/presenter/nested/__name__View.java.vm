@@ -26,14 +26,7 @@ public class ${name}View extends $extends implements ${name}Presenter.MyView {
     @Inject
     ${name}View(Binder uiBinder) {
         initWidget(uiBinder.createAndBindUi(this));
-    }
 
-    @Override
-    public void setInSlot(Object slot, IsWidget content) {
-        if (slot == ${name}Presenter.SLOT_${name}) {
-            main.setWidget(content);
-        } else {
-            super.setInSlot(slot, content);
-        }
+        bindSlot(${name}Presenter.SLOT_${name.toUpperCase()}, main);
     }
 }
