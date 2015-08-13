@@ -27,36 +27,6 @@ public class ${name}Presenter extends PresenterWidget<${name}Presenter.MyView> $
         #end
     }
     
-    #if( $onbind )
-    protected void onBind() {
-        super.onBind();
-    }
-    #end
-    
-    #if( $onreveal )
-    protected void onReveal() {
-        super.onReveal();
-    }
-    #end
-    
-    #if( $onhide )
-    protected void onHide() {
-        super.onHide();
-    }
-    #end
-    
-    #if( $onunbind )
-    protected void onUnbind() {
-        super.onUnbind();
-    }
-    #end
-    
-    #if( $onreset )
-    protected void onReset() {
-        super.onReset();
-    }
-    #end
-    
     #if( $manualreveal )
     @Override
     public boolean useManualReveal() {
