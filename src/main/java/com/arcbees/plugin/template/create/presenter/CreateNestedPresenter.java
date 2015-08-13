@@ -106,7 +106,7 @@ public class CreateNestedPresenter {
         context.put("name", presenterOptions.getName());
 
         // extra options
-        context.put("uihandlers", presenterOptions.getUihandlers());
+        context.put("uihandlers", presenterOptions.getUiHandlers());
         context.put("manualreveal", presenterOptions.getManualReveal());
 
         // nested presenter options

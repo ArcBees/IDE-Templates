@@ -105,7 +105,7 @@ public class CreatePresenterWidget {
         context.put("name", presenterOptions.getName());
 
         // extra options
-        context.put("uihandlers", presenterOptions.getUihandlers());
+        context.put("uihandlers", presenterOptions.getUiHandlers());
         context.put("manualreveal", presenterOptions.getManualReveal());
 
         // presenter widget options

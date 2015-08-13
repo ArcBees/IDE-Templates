@@ -17,19 +17,15 @@
 package com.arcbees.plugin.template.domain.presenter;
 
 public class PresenterOptions {
-    private String tmpPath;
     private String name;
     private String packageName;
-    
-    private boolean uihandlers;
-    private boolean manualreveal;
+
+    private boolean uiHandlers;
     private boolean manualReveal;
-    
-    private String gatekeeper;
 
     public PresenterOptions() {
     }
-    
+
     public String getName() {
         return name;
     }
@@ -46,43 +42,19 @@ public class PresenterOptions {
         this.packageName = packageName;
     }
 
-    public boolean getUihandlers() {
-        return uihandlers;
+    public boolean getUiHandlers() {
+        return uiHandlers;
     }
 
-    public void setUihandlers(boolean uihandlers) {
-        this.uihandlers = uihandlers;
+    public void setUiHandlers(boolean uiHandlers) {
+        this.uiHandlers = uiHandlers;
     }
 
-    public boolean getManualreveal() {
-        return manualreveal;
-    }
-
-    public void setManualreveal(boolean manualreveal) {
-        this.manualreveal = manualreveal;
-    }
-
-    public String getGatekeeper() {
-        return gatekeeper;
-    }
-
-    public void setGatekeeper(String gatekeeper) {
-        this.gatekeeper = gatekeeper;
-    }
-    
     public boolean getManualReveal() {
         return manualReveal;
     }
 
     public void setManualReveal(boolean manualReveal) {
         this.manualReveal = manualReveal;
-    }
-
-    public String getTmpPath() {
-        return tmpPath;
-    }
-
-    public void setTmpPath(String tmpPath) {
-        this.tmpPath = tmpPath;
     }
 }
