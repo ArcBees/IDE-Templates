@@ -16,7 +16,7 @@ import com.gwtplatform.mvp.client.PresenterWidget;
 import com.gwtplatform.mvp.client.View;
 
 public class ${name}Presenter extends PresenterWidget<${name}Presenter.MyView> $implements {
-    public interface MyView extends View ${extendsView} {
+    interface MyView extends View ${extendsView} {
         void center();
 
         void hide();

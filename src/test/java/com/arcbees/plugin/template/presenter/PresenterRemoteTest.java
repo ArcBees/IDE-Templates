@@ -34,21 +34,21 @@ public class PresenterRemoteTest {
 
     @Test
     public void testRemoteGet() {
-       String propertiesFile = RestAssured.get(propertiesUrlPath).andReturn().asString();
-       System.out.println(propertiesFile);
-       Assert.assertTrue(!propertiesFile.isEmpty());
+        String propertiesFile = RestAssured.get(propertiesUrlPath).andReturn().asString();
+
+        Assert.assertTrue(!propertiesFile.isEmpty());
     }
     
     @Test
     public void testRemotePropertiesObject() throws MalformedURLException, ConfigurationException {
-       FetchProperties properties = new FetchProperties(propertiesUrlPath);
-       properties.fetch();
-       Assert.assertTrue(properties.getFiles().size() > 4);
+        FetchProperties properties = new FetchProperties(propertiesUrlPath);
+        properties.fetch();
+        Assert.assertTrue(properties.getFiles().size() > 4);
     }
     
     @Test(expected = ConfigurationException.class)
     public void testRemotePropertiesObjectFail() throws MalformedURLException, ConfigurationException {
-       URL url = new URL(propertiesUrlPath);
-       Configuration config = new PropertiesConfiguration(url + "fail");
+        URL url = new URL(propertiesUrlPath);
+        new PropertiesConfiguration(url + "fail");
     }
 }

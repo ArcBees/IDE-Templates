@@ -14,7 +14,7 @@ import com.gwtplatform.mvp.client.PopupViewImpl;
 import com.gwtplatform.mvp.client.PopupViewWithUiHandlers;
 
 public class ${name}View extends $extends implements ${name}Presenter.MyView {
-    public interface Binder extends UiBinder<PopupPanel, ${name}View> {
+    interface Binder extends UiBinder<PopupPanel, ${name}View> {
     }
 
     @Inject
