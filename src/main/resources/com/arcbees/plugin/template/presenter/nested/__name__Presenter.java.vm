@@ -51,8 +51,7 @@ public class ${name}Presenter extends Presenter<${name}Presenter.MyView, ${name}
     interface MyView extends View $extendsView {
     }
 
-    @ContentSlot
-    public static final Type<RevealContentHandler<?>> SLOT_${name} = new Type<>();
+    public static final NestedSlot SLOT_${name.toUpperCase()} = new NestedSlot();
 
 	${nametokenrendered}
     ${proxy}
@@ -66,40 +65,10 @@ public class ${name}Presenter extends Presenter<${name}Presenter.MyView, ${name}
     		MyProxy proxy) {
         super(eventBus, view, proxy, ${revealType});
         
-        #if( $uihandlers ) 
+        #if( $uihandlers )
         getView().setUiHandlers(this);
         #end
     }
-	
-	#if( $onbind )
-	protected void onBind() {
-		super.onBind();
-	}
-	#end
-	
-	#if( $onreveal )
-	protected void onReveal() {
-		super.onReveal();
-	}
-	#end
-	
-	#if( $onhide )
-	protected void onHide() {
-		super.onHide();
-	}
-	#end
-	
-	#if( $onunbind )
-	protected void onUnbind() {
-		super.onUnbind();
-	}
-	#end
-	
-	#if( $onreset )
-	protected void onReset() {
-		super.onReset();
-	}
-	#end
 	
 	#if( $manualreveal )
 	@Override
@@ -107,11 +76,4 @@ public class ${name}Presenter extends Presenter<${name}Presenter.MyView, ${name}
 		return true;
 	}
 	#end
-	
-	#if ( $preparefromrequest )
-	@Override
-	public void prepareFromRequest(PlaceRequest request) {
-		super.prepareFromRequest(request);
-	}
-	#end	
 }

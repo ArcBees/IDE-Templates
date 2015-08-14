@@ -17,24 +17,15 @@
 package com.arcbees.plugin.template.domain.presenter;
 
 public class PresenterOptions {
-    private String tmpPath;
     private String name;
     private String packageName;
-    
-    private boolean uihandlers;
-    private boolean onbind;
-    private boolean onhide;
-    private boolean onreset;
-    private boolean onunbind;
-    private boolean manualreveal;
+
+    private boolean uiHandlers;
     private boolean manualReveal;
-    private boolean prepareFromRequest;
-    
-    private String gatekeeper;
 
     public PresenterOptions() {
     }
-    
+
     public String getName() {
         return name;
     }
@@ -51,83 +42,19 @@ public class PresenterOptions {
         this.packageName = packageName;
     }
 
-    public boolean getUihandlers() {
-        return uihandlers;
+    public boolean getUiHandlers() {
+        return uiHandlers;
     }
 
-    public void setUihandlers(boolean uihandlers) {
-        this.uihandlers = uihandlers;
+    public void setUiHandlers(boolean uiHandlers) {
+        this.uiHandlers = uiHandlers;
     }
 
-    public boolean getOnbind() {
-        return onbind;
-    }
-
-    public void setOnbind(boolean onbind) {
-        this.onbind = onbind;
-    }
-
-    public boolean getOnhide() {
-        return onhide;
-    }
-
-    public void setOnhide(boolean onhide) {
-        this.onhide = onhide;
-    }
-
-    public boolean getOnreset() {
-        return onreset;
-    }
-
-    public void setOnreset(boolean onreset) {
-        this.onreset = onreset;
-    }
-
-    public boolean getOnunbind() {
-        return onunbind;
-    }
-
-    public void setOnunbind(boolean onunbind) {
-        this.onunbind = onunbind;
-    }
-
-    public boolean getManualreveal() {
-        return manualreveal;
-    }
-
-    public void setManualreveal(boolean manualreveal) {
-        this.manualreveal = manualreveal;
-    }
-
-    public String getGatekeeper() {
-        return gatekeeper;
-    }
-
-    public void setGatekeeper(String gatekeeper) {
-        this.gatekeeper = gatekeeper;
-    }
-    
     public boolean getManualReveal() {
         return manualReveal;
     }
 
     public void setManualReveal(boolean manualReveal) {
         this.manualReveal = manualReveal;
-    }
-
-    public boolean getPrepareFromRequest() {
-        return prepareFromRequest;
-    }
-
-    public void setPrepareFromRequest(boolean prepareFromRequest) {
-        this.prepareFromRequest = prepareFromRequest;
-    }
-
-    public String getTmpPath() {
-        return tmpPath;
-    }
-
-    public void setTmpPath(String tmpPath) {
-        this.tmpPath = tmpPath;
     }
 }
