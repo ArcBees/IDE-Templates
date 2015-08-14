@@ -30,11 +30,14 @@ import com.arcbees.plugin.template.domain.presenter.PresenterOptions;
 import com.arcbees.plugin.template.domain.presenter.PresenterWidgetOptions;
 
 public class CreatePresenterWidgetTest {
+    private final String PACKAGE_NAME = "com.arcbees.project.client.app";
+    private final String APP_NAME = "MyAppHome";
+
     @Test
     public void testPresenterCreationLocal() {
         PresenterOptions presenterOptions = new PresenterOptions();
-        presenterOptions.setPackageName("com.arcbees.project.client.app");
-        presenterOptions.setName("MyAppHome");
+        presenterOptions.setPackageName(PACKAGE_NAME);
+        presenterOptions.setName(APP_NAME);
 
         PresenterWidgetOptions options = new PresenterWidgetOptions();
         options.setSingleton(true);
@@ -49,13 +52,6 @@ public class CreatePresenterWidgetTest {
             return;
         }
 
-        // Debugging
-        System.out.println(created.getModule().getContents());
-        System.out.println(created.getPresenter().getContents());
-        System.out.println(created.getUihandlers().getContents());
-        System.out.println(created.getView().getContents());
-        System.out.println(created.getViewui().getContents());
-
         Assert.assertNotNull(created.getModule().getContents());
         Assert.assertNotNull(created.getPresenter().getContents());
         Assert.assertNotNull(created.getUihandlers().getContents());
@@ -66,8 +62,8 @@ public class CreatePresenterWidgetTest {
     @Test
     public void testPresenterCreationRemote() {
         PresenterOptions presenterOptions = new PresenterOptions();
-        presenterOptions.setPackageName("com.arcbees.project.client.app");
-        presenterOptions.setName("MyAppHome");
+        presenterOptions.setPackageName(PACKAGE_NAME);
+        presenterOptions.setName(APP_NAME);
 
         PresenterWidgetOptions options = new PresenterWidgetOptions();
         options.setSingleton(true);
@@ -81,13 +77,6 @@ public class CreatePresenterWidgetTest {
             fail();
             return;
         }
-
-        // Debugging
-        System.out.println(created.getModule().getContents());
-        System.out.println(created.getPresenter().getContents());
-        System.out.println(created.getUihandlers().getContents());
-        System.out.println(created.getView().getContents());
-        System.out.println(created.getViewui().getContents());
 
         Assert.assertNotNull(created.getModule().getContents());
         Assert.assertNotNull(created.getPresenter().getContents());

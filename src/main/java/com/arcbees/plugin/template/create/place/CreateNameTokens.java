@@ -104,7 +104,7 @@ public class CreateNameTokens {
         return context;
     }
 
-    private void processNameTokensFile() throws ResourceNotFoundException, ParseErrorException, Exception {
+    private void processNameTokensFile() throws ResourceNotFoundException, ParseErrorException {
         String fileName = "NameTokens.java.vm";
         Template template = velocityEngine.getTemplate(fileName);
         VelocityContext context = getBaseVelocityContext();
@@ -114,7 +114,7 @@ public class CreateNameTokens {
         createdNameTokens.setNameTokensFile(rendered);
     }
 
-    private void processNameTokens() throws ResourceNotFoundException, ParseErrorException, Exception {
+    private void processNameTokens() throws Exception {
         List<NameToken> tokens = nameTokenOptions.getNameTokens();
         if (tokens == null) {
             return;
@@ -125,7 +125,7 @@ public class CreateNameTokens {
         }
     }
 
-    private void processNameToken(NameToken token) throws ResourceNotFoundException, ParseErrorException, Exception {
+    private void processNameToken(NameToken token) throws Exception {
         String field = processNameTokenFieldTemplate(token);
         String method = processNameTokenMethodTemplate(token);
 
@@ -133,19 +133,19 @@ public class CreateNameTokens {
         createdNameTokens.addMethod(method);
     }
 
-    private String processNameTokenFieldTemplate(NameToken token) throws ResourceNotFoundException, ParseErrorException, Exception {
+    private String processNameTokenFieldTemplate(NameToken token) throws Exception {
         String fileName = "NameTokenField.vm";
         RenderedTemplate rendered = processTemplate(fileName, token);
         return rendered.getContents();
     }
 
-    private String processNameTokenMethodTemplate(NameToken token) throws ResourceNotFoundException, ParseErrorException, Exception {
+    private String processNameTokenMethodTemplate(NameToken token) throws Exception {
         String fileName = "NameTokenMethod.vm";
         RenderedTemplate rendered = processTemplate(fileName, token);
         return rendered.getContents();
     }
 
-    private RenderedTemplate processTemplate(String fileName, NameToken token) throws ResourceNotFoundException, ParseErrorException, Exception {
+    private RenderedTemplate processTemplate(String fileName, NameToken token) throws ResourceNotFoundException, ParseErrorException {
         Template template = velocityEngine.getTemplate(fileName);
         VelocityContext context = getBaseVelocityContext();
         context.put("crawlable", token.getCrawlable());
@@ -153,8 +153,8 @@ public class CreateNameTokens {
 
         StringWriter writer = new StringWriter();
         template.merge(context, writer);
-        RenderedTemplate rendered = new RenderedTemplate(renderFileName(fileName), writer.toString());
-        return rendered;
+
+        return new RenderedTemplate(renderFileName(fileName), writer.toString());
     }
 
     private String renderFileName(String fileName) {

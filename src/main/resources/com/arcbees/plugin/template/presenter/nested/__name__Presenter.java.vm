@@ -44,6 +44,7 @@ import com.gwtplatform.mvp.client.HasUiHandlers;
 import com.gwtplatform.mvp.client.proxy.PlaceRequest;
 import com.gwtplatform.mvp.client.annotations.NameToken;
 import com.gwtplatform.mvp.client.annotations.ProxyCodeSplit;
+import com.gwtplatform.mvp.client.presenter.slots.NestedSlot;
 ${contentSlotImport}
 ${nameTokenImport}
 
@@ -51,15 +52,15 @@ public class ${name}Presenter extends Presenter<${name}Presenter.MyView, ${name}
     interface MyView extends View $extendsView {
     }
 
-    public static final NestedSlot SLOT_${name.toUpperCase()} = new NestedSlot();
-
-	${nametokenrendered}
+    ${nametokenrendered}
     ${proxy}
-    public interface MyProxy extends ${proxyExtends}<${name}Presenter> {
+    interface MyProxy extends ${proxyExtends}<${name}Presenter> {
     }
 
+    public static final NestedSlot SLOT_${name.toUpperCase()} = new NestedSlot();
+
     @Inject
-    public ${name}Presenter(
+    ${name}Presenter(
     		EventBus eventBus, 
     		MyView view, 
     		MyProxy proxy) {

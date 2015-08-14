@@ -135,7 +135,7 @@ public class CreatePopupPresenter {
         return context;
     }
 
-    private void process() throws ResourceNotFoundException, ParseErrorException, Exception {
+    private void process() throws Exception {
         processModule();
         processPresenter();
         processUiHandlers();
@@ -143,49 +143,49 @@ public class CreatePopupPresenter {
         processViewBinder();
     }
 
-    private void processModule() throws ResourceNotFoundException, ParseErrorException, Exception {
+    private void processModule() throws Exception {
         String fileName = "__name__Module.java.vm";
         RenderedTemplate rendered = processTemplate(fileName);
         createdPopupPresenter.setModule(rendered);
     }
 
-    private void processPresenter() throws ResourceNotFoundException, ParseErrorException, Exception {
+    private void processPresenter() throws Exception {
         String fileName = "__name__Presenter.java.vm";
         RenderedTemplate rendered = processTemplate(fileName);
         createdPopupPresenter.setPresenter(rendered);
     }
 
-    private void processUiHandlers() throws ResourceNotFoundException, ParseErrorException, Exception {
+    private void processUiHandlers() throws Exception {
         String fileName = "__name__UiHandlers.java.vm";
         RenderedTemplate rendered = processTemplate(fileName);
         createdPopupPresenter.setUihandlers(rendered);
     }
 
-    private void processView() throws ResourceNotFoundException, ParseErrorException, Exception {
+    private void processView() throws Exception {
         String fileName = "__name__View.java.vm";
         RenderedTemplate rendered = processTemplate(fileName);
         createdPopupPresenter.setView(rendered);
     }
 
-    private void processViewBinder() throws ResourceNotFoundException, ParseErrorException, Exception {
+    private void processViewBinder() throws Exception {
         String fileName = "__name__View.ui.xml.vm";
         RenderedTemplate rendered = processTemplate(fileName);
         createdPopupPresenter.setViewui(rendered);
     }
 
-    private RenderedTemplate processTemplate(String fileName) throws ResourceNotFoundException, ParseErrorException,
-                    Exception {
+    private RenderedTemplate processTemplate(String fileName) throws ResourceNotFoundException, ParseErrorException {
         Template template = velocityEngine.getTemplate(fileName);
         VelocityContext context = getBaseVelocityContext();
         StringWriter writer = new StringWriter();
         template.merge(context, writer);
-        RenderedTemplate rendered = new RenderedTemplate(renderFileName(fileName), writer.toString());
-        return rendered;
+
+        return new RenderedTemplate(renderFileName(fileName), writer.toString());
     }
 
     private String renderFileName(String fileName) {
         String name = presenterOptions.getName();
         name = name.replace(".vm", "");
+
         return fileName.replace("__name__", name);
     }
 }

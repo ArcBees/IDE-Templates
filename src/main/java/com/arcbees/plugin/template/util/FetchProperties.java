@@ -26,7 +26,7 @@ import org.apache.commons.configuration.PropertiesConfiguration;
 
 public class FetchProperties {
     public enum Config {
-        FILE, REQUIRED, TASKS, OPTIONAL;
+        FILE, TASKS, OPTIONAL;
         
         public String toString() {
             return name().toLowerCase();

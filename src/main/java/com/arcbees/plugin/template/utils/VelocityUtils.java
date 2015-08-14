@@ -37,12 +37,8 @@ public class VelocityUtils {
         properties.setProperty(RuntimeConstants.RUNTIME_LOG_LOGSYSTEM_CLASS, NullLogChute.class.getName());
 
         VelocityEngine velocityEngine;
-        try {
-            velocityEngine = new VelocityEngine();
-            velocityEngine.init(properties);
-        } catch (Exception e) {
-            throw e;
-        }
+        velocityEngine = new VelocityEngine();
+        velocityEngine.init(properties);
 
         return velocityEngine;
     }

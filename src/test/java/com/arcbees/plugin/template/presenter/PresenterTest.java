@@ -38,7 +38,7 @@ public class PresenterTest {
     }
 
     @Test
-    public void testModule() throws ResourceNotFoundException, ParseErrorException, Exception {
+    public void testModule() throws ResourceNotFoundException, ParseErrorException {
     Template t = velocityEngine.getTemplate("__name__Module.java.vm");
 
         VelocityContext context = new VelocityContext();
@@ -53,7 +53,7 @@ public class PresenterTest {
     }
 
     @Test
-    public void testPresenter() throws ResourceNotFoundException, ParseErrorException, Exception {
+    public void testPresenter() throws ResourceNotFoundException, ParseErrorException {
         Template t = velocityEngine.getTemplate("__name__Presenter.java.vm");
 
         VelocityContext context = new VelocityContext();
@@ -69,7 +69,7 @@ public class PresenterTest {
     }
 
     @Test
-    public void testPresenterWithUiHandlers() throws ResourceNotFoundException, ParseErrorException, Exception {
+    public void testPresenterWithUiHandlers() throws ResourceNotFoundException, ParseErrorException {
         Template t = velocityEngine.getTemplate("__name__Presenter.java.vm");
 
         VelocityContext context = new VelocityContext();
@@ -85,7 +85,7 @@ public class PresenterTest {
     }
 
     @Test
-    public void testUiHandlers() throws ResourceNotFoundException, ParseErrorException, Exception {
+    public void testUiHandlers() throws ResourceNotFoundException, ParseErrorException {
         Template t = velocityEngine.getTemplate("__name__UiHandlers.java.vm");
 
         VelocityContext context = new VelocityContext();
@@ -101,7 +101,7 @@ public class PresenterTest {
     }
 
     @Test
-    public void testView() throws ResourceNotFoundException, ParseErrorException, Exception {
+    public void testView() throws ResourceNotFoundException, ParseErrorException {
         Template t = velocityEngine.getTemplate("__name__View.java.vm");
 
         VelocityContext context = new VelocityContext();
@@ -116,7 +116,7 @@ public class PresenterTest {
     }
 
     @Test
-    public void testViewWithUiHandlers() throws ResourceNotFoundException, ParseErrorException, Exception {
+    public void testViewWithUiHandlers() throws ResourceNotFoundException, ParseErrorException {
         Template t = velocityEngine.getTemplate("__name__View.java.vm");
 
         VelocityContext context = new VelocityContext();
@@ -131,7 +131,7 @@ public class PresenterTest {
     }
 
     @Test
-    public void testViewUi() throws ResourceNotFoundException, ParseErrorException, Exception {
+    public void testViewUi() throws ResourceNotFoundException, ParseErrorException {
         Template t = velocityEngine.getTemplate("__name__View.ui.xml.vm");
 
         VelocityContext context = new VelocityContext();
