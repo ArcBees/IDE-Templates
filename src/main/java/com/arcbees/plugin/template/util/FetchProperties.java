@@ -97,7 +97,7 @@ public class FetchProperties {
         String key = config.toString();
         List<Object> objects = configuration.getList(key);
         
-        List<String> strings = new ArrayList<>();
+        List<String> strings = new ArrayList<String>();
         for (Object object : objects) {
             if (object != null) {
                 strings.add(object.toString());

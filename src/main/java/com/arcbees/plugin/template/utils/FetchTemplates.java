@@ -36,7 +36,7 @@ public class FetchTemplates {
 
     public void addPath(String path) {
         if (pathsToFetch == null) {
-            pathsToFetch = new HashMap<>();
+            pathsToFetch = new HashMap<String, FetchTemplate>();
         }
 
         pathsToFetch.put(path, null);

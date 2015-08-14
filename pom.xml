@@ -54,7 +54,7 @@
 
     <properties>
         <!-- project -->
-        <target.jdk>1.7</target.jdk>
+        <target.jdk>1.6</target.jdk>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <!-- libs -->
