@@ -5,7 +5,6 @@
 #elseif ( $revealType == "RootPopup" )
 	#set( $revealType = "RevealType.RootPopup" )
 #end
-
 #if ( $uihandlers )
 	#set( $implements = "implements ${name}UiHandlers" )
 	#set( $extendsView = ", HasUiHandlers<${name}UiHandlers>" )
@@ -13,13 +12,11 @@
 	#set( $implements = "" )
 	#set( $extendsView = "" )
 #end
-
 #if ( $codesplit )
 	#set( $proxy = "@ProxyCodeSplit" )
 #else
 	#set( $proxy = "@ProxyStandard" )
 #end
-
 #if ( $isplace ) 
 	#set( $nametokenrendered = "@NameToken(${nametoken})" )
 	#set( $proxyExtends = "ProxyPlace" )
@@ -27,7 +24,6 @@
 	#set( $nametokenrendered = "" )
 	#set( $proxyExtends = "Proxy" )
 #end
-
 package ${package};
 
 import com.google.gwt.event.shared.GwtEvent.Type;
